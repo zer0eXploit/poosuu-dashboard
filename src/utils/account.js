@@ -31,3 +31,18 @@ export function resetPassword({ token, newPassword }) {
     data: { newPassword },
   });
 }
+
+export function createAdmin({ name, email, username, password }) {
+  return poosuuAPI.request({
+    url: "/admins",
+    method: "POST",
+    data: { name, email, username, password },
+  });
+}
+
+export function getAdminById(id) {
+  return poosuuAPI.request({
+    url: `/admins/${id}`,
+    method: "GET",
+  });
+}

@@ -27,6 +27,9 @@ const AccountSecurity = withSuspense(
 const PasswordReset = withSuspense(
   React.lazy(() => import(/* webpackPreload: true */ "./pages/PasswordReset"))
 );
+const ManageAdmins = withSuspense(
+  React.lazy(() => import(/* webpackPreload: true */ "./pages/ManageAdmins"))
+);
 
 function App() {
   return (
@@ -41,6 +44,7 @@ function App() {
             <Route index element={<AccountIndex />} />
             <Route path="account-security" element={<AccountSecurity />} />
             <Route path="update-account-info" element={<AccountInfo />} />
+            <Route path="manage-admins" element={<ManageAdmins />} />
           </Route>
         </Route>
         <Route path="/password-reset/:token" element={<PasswordReset />} />
