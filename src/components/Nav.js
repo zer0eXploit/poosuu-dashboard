@@ -14,9 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
 
 export function Nav() {
-  const {
-    authData: { admin },
-  } = useAuth();
+  const { authData } = useAuth();
 
   const navigate = useNavigate();
 
@@ -30,16 +28,24 @@ export function Nav() {
       elevation={1}
     >
       <Heading as="h4" size={500} cursor="pointer">
-        {admin ? (
-          <Pane display="flex" alignItems="center">
-            <Avatar src={admin.avatarUrl} name={admin.name} size={40} />
-            <Text marginLeft={minorScale(3)}>{admin.username}</Text>
+        {authData?.admin ? (
+          <Pane
+            display="flex"
+            alignItems="center"
+            onClick={() => navigate("/dashboard")}
+          >
+            <Avatar
+              src={authData?.admin.avatarUrl}
+              name={authData?.admin.name}
+              size={40}
+            />
+            <Text marginLeft={minorScale(3)}>{authData?.admin.username}</Text>
           </Pane>
         ) : (
           "Poo Suu Admins"
         )}
       </Heading>
-      {admin && (
+      {authData?.admin && (
         <Button
           marginRight={16}
           onClick={() => navigate("/dashboard/my-account")}
