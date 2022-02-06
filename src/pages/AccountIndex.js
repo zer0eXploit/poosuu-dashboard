@@ -6,7 +6,6 @@ import {
   Paragraph,
   Avatar,
   Text,
-  Badge,
   minorScale,
 } from "evergreen-ui";
 
@@ -52,18 +51,7 @@ export default function AccountIndex() {
             <Text size={500}>Name - {admin.name}</Text>
             <Text size={500}>Username - {admin.username}</Text>
             <Text size={500}>Admin ID - {admin.id}</Text>
-            <Text size={500}>
-              Email - {admin.email}{" "}
-              {admin.isEmailVerified ? (
-                <Badge color="green" marginRight={8}>
-                  Email Verified
-                </Badge>
-              ) : (
-                <Badge color="red" marginRight={8}>
-                  Unverified
-                </Badge>
-              )}
-            </Text>
+            <Text size={500}>Email - {admin.email}</Text>
             <Text size={500}>
               Account Created - {new Date(admin.createdAt).toLocaleDateString()}
             </Text>
