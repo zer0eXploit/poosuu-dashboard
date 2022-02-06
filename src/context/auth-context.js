@@ -12,7 +12,7 @@ export function AuthProvider(props) {
     if (admin && token) {
       return {
         admin: JSON.parse(admin),
-        tokeN: token,
+        token: token,
       };
     }
 
