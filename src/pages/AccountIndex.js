@@ -1,6 +1,7 @@
 import React from "react";
 
 import {
+  Button,
   Pane,
   Heading,
   Paragraph,
@@ -8,13 +9,26 @@ import {
   Text,
   minorScale,
 } from "evergreen-ui";
+import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../context/auth-context";
+
+import CONSTANTS from "../utils/constants";
 
 export default function AccountIndex() {
   const {
     authData: { admin },
+    setAuthData,
   } = useAuth();
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem(CONSTANTS.POOSUU_ADMIN_ACCESS_TOKEN);
+    localStorage.removeItem(CONSTANTS.POOSUU_ADMIN_DATA);
+    setAuthData(null);
+    navigate("/login");
+  };
 
   return (
     <Pane
@@ -55,6 +69,9 @@ export default function AccountIndex() {
             <Text size={500}>
               Account Created - {new Date(admin.createdAt).toLocaleDateString()}
             </Text>
+            <Button onClick={handleLogout} intent="danger">
+              Log Out
+            </Button>
           </Pane>
         </Pane>
       </Pane>
