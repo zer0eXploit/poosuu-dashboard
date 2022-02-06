@@ -1,4 +1,4 @@
-import poosuuAPI from "../api/poosuu";
+import poosuuAPI, { poosuuPasswordResetAPI } from "../api/poosuu";
 
 export function updateNameAvatar({ adminId, name, avatarUrl }) {
   return poosuuAPI.request({
@@ -21,5 +21,13 @@ export function requestPasswordResetEmail({ email }) {
     url: "/admins/password-reset",
     method: "POST",
     data: { email },
+  });
+}
+
+export function resetPassword({ token, newPassword }) {
+  return poosuuPasswordResetAPI.request({
+    url: `/admins/password-reset/${token}`,
+    method: "PUT",
+    data: { newPassword },
   });
 }

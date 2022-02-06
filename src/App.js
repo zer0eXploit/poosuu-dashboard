@@ -24,6 +24,9 @@ const AccountInfo = withSuspense(
 const AccountSecurity = withSuspense(
   React.lazy(() => import(/* webpackPreload: true */ "./pages/AccountSecurity"))
 );
+const PasswordReset = withSuspense(
+  React.lazy(() => import(/* webpackPreload: true */ "./pages/PasswordReset"))
+);
 
 function App() {
   return (
@@ -40,6 +43,7 @@ function App() {
             <Route path="update-account-info" element={<AccountInfo />} />
           </Route>
         </Route>
+        <Route path="/password-reset/:token" element={<PasswordReset />} />
       </Routes>
     </AuthProvider>
   );

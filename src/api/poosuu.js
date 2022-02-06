@@ -7,6 +7,11 @@ export const poosuuLoginAPI = axios.create({
   method: "POST",
 });
 
+export const poosuuPasswordResetAPI = axios.create({
+  baseURL: CONSTANTS.API_BASE_URL,
+  method: "POST",
+});
+
 const poosuuAPI = axios.create({ baseURL: CONSTANTS.API_BASE_URL });
 
 let token = localStorage.getItem(CONSTANTS.POOSUU_ADMIN_ACCESS_TOKEN);
