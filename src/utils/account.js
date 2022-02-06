@@ -7,3 +7,19 @@ export function updateNameAvatar({ adminId, name, avatarUrl }) {
     data: { name, avatarUrl },
   });
 }
+
+export function updatePassword({ oldPassword, newPassword }) {
+  return poosuuAPI.request({
+    url: "/admins/password",
+    method: "PUT",
+    data: { oldPassword, newPassword },
+  });
+}
+
+export function requestPasswordResetEmail({ email }) {
+  return poosuuAPI.request({
+    url: "/admins/password-reset",
+    method: "POST",
+    data: { email },
+  });
+}

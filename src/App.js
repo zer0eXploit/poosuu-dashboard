@@ -21,6 +21,9 @@ const AccountIndex = withSuspense(
 const AccountInfo = withSuspense(
   React.lazy(() => import(/* webpackPreload: true */ "./pages/AccountInfo"))
 );
+const AccountSecurity = withSuspense(
+  React.lazy(() => import(/* webpackPreload: true */ "./pages/AccountSecurity"))
+);
 
 function App() {
   return (
@@ -33,6 +36,7 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="my-account" element={<Account />}>
             <Route index element={<AccountIndex />} />
+            <Route path="account-security" element={<AccountSecurity />} />
             <Route path="update-account-info" element={<AccountInfo />} />
           </Route>
         </Route>
