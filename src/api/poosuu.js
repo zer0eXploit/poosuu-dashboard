@@ -21,6 +21,7 @@ poosuuAPI.interceptors.request.use(function (config) {
     token = localStorage.getItem(CONSTANTS.POOSUU_ADMIN_ACCESS_TOKEN);
   }
   config.headers.Authorization = token ? `Bearer ${token}` : "";
+  config.headers["x-api-key"] = CONSTANTS.POOSUU_PUBLIC_API_KEY;
   return config;
 });
 

@@ -6,6 +6,8 @@ import {
   Heading,
   Button,
   Text,
+  UserIcon,
+  HatIcon,
   majorScale,
   minorScale,
 } from "evergreen-ui";
@@ -46,12 +48,22 @@ export function Nav() {
         )}
       </Heading>
       {authData?.admin && (
-        <Button
-          marginRight={16}
-          onClick={() => navigate("/dashboard/my-account")}
-        >
-          My Account
-        </Button>
+        <Pane marginLeft="auto">
+          <Button
+            iconAfter={HatIcon}
+            marginRight={16}
+            onClick={() => navigate("/dashboard/artists")}
+          >
+            Artists
+          </Button>
+          <Button
+            iconAfter={UserIcon}
+            marginRight={16}
+            onClick={() => navigate("/dashboard/my-account")}
+          >
+            My Account
+          </Button>
+        </Pane>
       )}
     </Pane>
   );

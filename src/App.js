@@ -33,6 +33,12 @@ const ManageAdmins = withSuspense(
 const ManageAPIKeys = withSuspense(
   React.lazy(() => import(/* webpackPreload: true */ "./pages/ManageAPIKeys"))
 );
+const Artists = withSuspense(
+  React.lazy(() => import(/* webpackPreload: true */ "./pages/Artists"))
+);
+const ArtistsIndex = withSuspense(
+  React.lazy(() => import(/* webpackPreload: true */ "./pages/ArtistsIndex"))
+);
 
 function App() {
   return (
@@ -49,6 +55,9 @@ function App() {
             <Route path="update-account-info" element={<AccountInfo />} />
             <Route path="manage-admins" element={<ManageAdmins />} />
             <Route path="manage-api-keys" element={<ManageAPIKeys />} />
+          </Route>
+          <Route path="artists" element={<Artists />}>
+            <Route index element={<ArtistsIndex />} />
           </Route>
         </Route>
         <Route path="/password-reset/:token" element={<PasswordReset />} />
