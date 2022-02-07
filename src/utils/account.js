@@ -46,3 +46,32 @@ export function getAdminById(id) {
     method: "GET",
   });
 }
+
+export function createAPIKey(host) {
+  return poosuuAPI.request({
+    url: "/admins/api-keys",
+    method: "POST",
+    data: { host },
+  });
+}
+
+export function getGeneratedAPIKeys() {
+  return poosuuAPI.request({
+    url: "/admins/api-keys",
+    method: "GET",
+  });
+}
+
+export function deleteGeneratedAPIKey(key) {
+  return poosuuAPI.request({
+    url: `/admins/api-keys/${key}`,
+    method: "DELETE",
+  });
+}
+
+export function getGeneratedAPIKey(key) {
+  return poosuuAPI.request({
+    url: `/admins/api-keys/${key}`,
+    method: "GET",
+  });
+}
