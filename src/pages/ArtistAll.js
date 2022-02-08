@@ -22,7 +22,7 @@ export default function ArtistAll() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { error, data, status, run } = useAsync();
 
-  const pageNumber = searchParams.get("page") ?? 0;
+  const pageNumber = searchParams.get("page") ?? 1;
 
   useEffect(() => {
     run(getAllArtists(pageNumber));
