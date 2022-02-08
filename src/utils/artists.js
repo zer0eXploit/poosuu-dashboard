@@ -17,6 +17,19 @@ export function getArtist(id) {
   });
 }
 
+export function postArtist({ name, bio, cover, image }) {
+  return poosuuAPI.request({
+    url: `/artists`,
+    method: "POST",
+    data: {
+      name,
+      bio,
+      cover,
+      image,
+    },
+  });
+}
+
 export function putArtist({ id, name, bio, cover, image }) {
   return poosuuAPI.request({
     url: `/artists/${id}`,
