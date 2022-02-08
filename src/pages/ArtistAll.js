@@ -63,6 +63,7 @@ export default function ArtistAll() {
           gap={majorScale(2)}
           marginY={majorScale(3)}
           flexWrap="wrap"
+          justifyContent="center"
           maxWidth={1400}
         >
           <CardLoader />
@@ -96,6 +97,7 @@ export default function ArtistAll() {
           display="flex"
           gap={majorScale(2)}
           marginY={majorScale(3)}
+          justifyContent="center"
           flexWrap="wrap"
           maxWidth={1400}
         >
