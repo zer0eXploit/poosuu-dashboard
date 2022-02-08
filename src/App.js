@@ -39,6 +39,12 @@ const Artists = withSuspense(
 const ArtistsIndex = withSuspense(
   React.lazy(() => import(/* webpackPreload: true */ "./pages/ArtistsIndex"))
 );
+const Artist = withSuspense(
+  React.lazy(() => import(/* webpackPreload: true */ "./pages/Artist"))
+);
+const ArtistEdit = withSuspense(
+  React.lazy(() => import(/* webpackPreload: true */ "./pages/ArtistEdit"))
+);
 
 function App() {
   return (
@@ -58,6 +64,9 @@ function App() {
           </Route>
           <Route path="artists" element={<Artists />}>
             <Route index element={<ArtistsIndex />} />
+            <Route path=":artistId" element={<Artist />}>
+              <Route index path="edit" element={<ArtistEdit />} />
+            </Route>
           </Route>
         </Route>
         <Route path="/password-reset/:token" element={<PasswordReset />} />

@@ -9,3 +9,30 @@ export function searchArtists(term) {
     },
   });
 }
+
+export function getArtist(id) {
+  return poosuuAPI.request({
+    url: `/artists/${id}`,
+    method: "GET",
+  });
+}
+
+export function putArtist({ id, name, bio, cover, image }) {
+  return poosuuAPI.request({
+    url: `/artists/${id}`,
+    method: "PUT",
+    data: {
+      name,
+      bio,
+      cover,
+      image,
+    },
+  });
+}
+
+export function deleteArtist(id) {
+  return poosuuAPI.request({
+    url: `/artists/${id}`,
+    method: "DELETE",
+  });
+}
