@@ -27,6 +27,16 @@ export function getArtist(id) {
   });
 }
 
+export function getArtistSongs(id, page = 1) {
+  return poosuuAPI.request({
+    url: `/artists/${id}/songs`,
+    method: "GET",
+    params: {
+      page,
+    },
+  });
+}
+
 export function postArtist({ name, bio, cover, image }) {
   return poosuuAPI.request({
     url: `/artists`,

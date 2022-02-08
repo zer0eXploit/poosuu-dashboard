@@ -7,6 +7,7 @@ import {
   Pane,
   Small,
   EditIcon,
+  MoreIcon,
   majorScale,
 } from "evergreen-ui";
 import { useParams, useNavigate, Outlet } from "react-router-dom";
@@ -97,15 +98,27 @@ export default function Artist() {
                 Last Edited: {new Date(updatedAt).toLocaleDateString()}
               </Small>
             </Paragraph>
-            <Button
-              iconBefore={EditIcon}
-              alignSelf="flex-end"
-              onClick={() => {
-                navigate(`/dashboard/artists/${artistId}/edit`);
-              }}
-            >
-              Edit
-            </Button>
+            <Pane alignSelf="flex-end">
+              <Button
+                iconBefore={EditIcon}
+                marginRight={majorScale(2)}
+                onClick={() => {
+                  navigate(`/dashboard/artists/${artistId}/edit`);
+                }}
+              >
+                Edit
+              </Button>
+              <Button
+                iconBefore={MoreIcon}
+                intent="success"
+                appearance="primary"
+                onClick={() => {
+                  navigate(`/dashboard/artists/${artistId}/songs`);
+                }}
+              >
+                View Songs
+              </Button>
+            </Pane>
           </Pane>
         </div>
         <Outlet
