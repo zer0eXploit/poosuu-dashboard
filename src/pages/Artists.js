@@ -24,7 +24,7 @@ export default function Artists() {
         <Button
           marginY={8}
           marginRight={12}
-          iconBefore={NewPersonIcon}
+          iconAfter={NewPersonIcon}
           onClick={() => {
             navigate("/dashboard/artists/create");
           }}
@@ -34,7 +34,7 @@ export default function Artists() {
         <Button
           marginY={8}
           marginRight={12}
-          iconBefore={AsteriskIcon}
+          iconAfter={AsteriskIcon}
           onClick={() => {
             navigate("/dashboard/artists/all");
           }}
@@ -44,7 +44,7 @@ export default function Artists() {
         <Button
           marginY={8}
           marginRight={12}
-          iconBefore={SearchIcon}
+          iconAfter={SearchIcon}
           onClick={() => {
             navigate("/dashboard/artists");
           }}
