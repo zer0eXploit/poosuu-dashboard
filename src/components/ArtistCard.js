@@ -8,7 +8,6 @@ export function ArtistCard({ name, image, id }) {
 
   return (
     <Card
-      key={name}
       display="grid"
       gridTemplateColumns="150px 1fr"
       gridGap="10px"
