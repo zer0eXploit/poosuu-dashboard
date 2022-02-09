@@ -23,8 +23,16 @@ export function Nav() {
   const navigate = useNavigate();
 
   return (
-    <Pane border elevation={1}>
-      <Container>
+    <Pane
+      border
+      elevation={1}
+      position="fixed"
+      background="tint2"
+      top={0}
+      zIndex={999}
+      width="100%"
+    >
+      <Container disableMt>
         <Pane display="flex" alignItems="center" justifyContent="space-between">
           <Heading as="h4" size={500} cursor="pointer">
             {authData?.admin ? (
