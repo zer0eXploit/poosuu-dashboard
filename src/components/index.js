@@ -7,3 +7,4 @@ export { CardLoader } from "./CardLoader";
 export { ArtistCard } from "./ArtistCard";
 export { ArtistLoader } from "./ArtistLoader";
 export { PrivateRoute } from "./PrivateRoute";
+export { SearchWithSuggestions } from "./SearchWithSuggestions";
