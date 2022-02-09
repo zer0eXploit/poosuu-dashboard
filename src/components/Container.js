@@ -2,8 +2,14 @@ import React from "react";
 
 import { Pane, majorScale } from "evergreen-ui";
 
-export function Container(props) {
+export function Container({ disableMt, ...props }) {
   return (
-    <Pane marginX="auto" maxWidth={1400} {...props} padding={majorScale(2)} />
+    <Pane
+      marginX="auto"
+      marginTop={disableMt ? 0 : "78px"}
+      maxWidth={1400}
+      {...props}
+      padding={majorScale(2)}
+    />
   );
 }
