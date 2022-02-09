@@ -1,4 +1,5 @@
 export { Nav } from "./Nav";
+export { SongCard } from "./SongCard";
 export { Container } from "./Container";
 export { ListLoader } from "./ListLoader";
 export { SongLoader } from "./SongLoader";

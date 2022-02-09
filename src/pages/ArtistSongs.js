@@ -1,17 +1,9 @@
 import React, { useEffect } from "react";
 
-import {
-  Pagination,
-  Card,
-  Heading,
-  Pane,
-  Button,
-  majorScale,
-} from "evergreen-ui";
+import { useSearchParams, useParams } from "react-router-dom";
+import { Heading, Pane, Button, Pagination, majorScale } from "evergreen-ui";
 
-import { useNavigate, useSearchParams, useParams } from "react-router-dom";
-
-import { Container, SongLoader } from "../components";
+import { Container, SongLoader, SongCard } from "../components";
 
 import { useAsync } from "../hooks";
 
@@ -20,7 +12,6 @@ import { getArtistSongs } from "../utils/artists";
 export default function ArtistSongs() {
   const { artistId } = useParams();
 
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const { error, data, status, run } = useAsync();
 
@@ -88,34 +79,9 @@ export default function ArtistSongs() {
     return (
       <Container disableMt>
         <Pane display="flex" gap={majorScale(2)} flexWrap="wrap">
-          {songs.map((song) => {
-            return (
-              <Card
-                key={song.title}
-                display="grid"
-                gridTemplateColumns="1fr"
-                gridGap="10px"
-                padding={majorScale(2)}
-                elevation={1}
-                background="blue25"
-              >
-                <img
-                  width="150px"
-                  src={song.coverArt}
-                  alt={song.title}
-                  style={{ borderRadius: "5px" }}
-                />
-                <Heading as="h5" marginBottom="auto" size={800}>
-                  {song.title}
-                </Heading>
-                <Button
-                  onClick={() => navigate(`/dashboard/songs/${song._id}`)}
-                >
-                  View
-                </Button>
-              </Card>
-            );
-          })}
+          {songs.map(({ title, coverArt, _id }) => (
+            <SongCard title={title} coverArt={coverArt} id={_id} />
+          ))}
         </Pane>
         <Pagination
           page={current}
