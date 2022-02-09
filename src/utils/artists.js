@@ -10,12 +10,13 @@ export function searchArtists(term) {
   });
 }
 
-export function getAllArtists(page = 1) {
+export function getAllArtists(page = 1, sortBy = "name") {
   return poosuuAPI.request({
     url: `/artists`,
     method: "GET",
     params: {
       page,
+      sortBy,
     },
   });
 }
