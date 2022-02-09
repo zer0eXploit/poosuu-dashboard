@@ -1,24 +1,15 @@
 import React, { useEffect } from "react";
 
-import {
-  Pagination,
-  Card,
-  Heading,
-  Pane,
-  Button,
-  majorScale,
-} from "evergreen-ui";
+import { useSearchParams } from "react-router-dom";
+import { Heading, Pane, Button, Pagination, majorScale } from "evergreen-ui";
 
-import { useNavigate, useSearchParams } from "react-router-dom";
-
-import { Container, CardLoader } from "../components";
+import { Container, CardLoader, ArtistCard } from "../components";
 
 import { useAsync } from "../hooks";
 
 import { getAllArtists } from "../utils/artists";
 
 export default function ArtistAll() {
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const { error, data, status, run } = useAsync();
 
@@ -98,55 +89,9 @@ export default function ArtistAll() {
           flexWrap="wrap"
           justifyContent="center"
         >
-          {artists.map((artist) => {
-            return (
-              <Card
-                key={artist.name}
-                display="grid"
-                gridTemplateColumns="150px 1fr"
-                gridGap="10px"
-                padding={majorScale(2)}
-                elevation={1}
-                background="blue25"
-                width={400}
-                maxWidth={400}
-              >
-                <img
-                  width="100%"
-                  src={artist.image}
-                  alt={artist.name}
-                  style={{ borderRadius: "5px" }}
-                />
-                <Pane
-                  display="flex"
-                  gap="10px"
-                  flexDirection="column"
-                  justifyContent="center"
-                >
-                  <Heading as="h5" marginBottom="auto" size={800}>
-                    {artist.name}
-                  </Heading>
-                  <Button
-                    appearance="primary"
-                    intent="success"
-                    onClick={() => {
-                      navigate(`/dashboard/artists/${artist._id}/songs`);
-                    }}
-                  >
-                    View Songs
-                  </Button>
-                  <Button
-                    intent="success"
-                    onClick={() => {
-                      navigate(`/dashboard/artists/${artist._id}`);
-                    }}
-                  >
-                    See Info
-                  </Button>
-                </Pane>
-              </Card>
-            );
-          })}
+          {artists.map(({ name, image, _id }) => (
+            <ArtistCard name={name} image={image} id={_id} key={_id} />
+          ))}
         </Pane>
         <Pagination
           page={current}

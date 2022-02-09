@@ -1,17 +1,8 @@
 import React from "react";
 
-import {
-  Card,
-  Heading,
-  Pane,
-  SearchInput,
-  Button,
-  majorScale,
-} from "evergreen-ui";
+import { Pane, Heading, SearchInput, majorScale } from "evergreen-ui";
 
-import { useNavigate } from "react-router-dom";
-
-import { Container, CardLoader } from "../components";
+import { Container, CardLoader, ArtistCard } from "../components";
 
 import { useAsync } from "../hooks";
 
@@ -19,7 +10,6 @@ import { searchArtists } from "../utils/artists";
 
 export default function ArtistsIndex() {
   const { status, data, error, run } = useAsync();
-  const navigate = useNavigate();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -71,53 +61,9 @@ export default function ArtistsIndex() {
 
           {status === "resolved" &&
             data?.data?.length > 0 &&
-            data.data.map((artist) => {
-              return (
-                <Card
-                  key={artist.name}
-                  display="grid"
-                  gridTemplateColumns="150px 1fr"
-                  gridGap="10px"
-                  padding={majorScale(2)}
-                  elevation={1}
-                  background="blue25"
-                >
-                  <img
-                    width="100%"
-                    src={artist.image}
-                    alt={artist.name}
-                    style={{ borderRadius: "5px" }}
-                  />
-                  <Pane
-                    display="flex"
-                    gap="10px"
-                    flexDirection="column"
-                    justifyContent="center"
-                  >
-                    <Heading as="h5" marginBottom="auto" size={800}>
-                      {artist.name}
-                    </Heading>
-                    <Button
-                      appearance="primary"
-                      intent="success"
-                      onClick={() => {
-                        navigate(`/dashboard/artists/${artist._id}/songs`);
-                      }}
-                    >
-                      View Songs
-                    </Button>
-                    <Button
-                      intent="success"
-                      onClick={() => {
-                        navigate(`/dashboard/artists/${artist._id}`);
-                      }}
-                    >
-                      See Info
-                    </Button>
-                  </Pane>
-                </Card>
-              );
-            })}
+            data.data.map(({ name, image, _id }) => (
+              <ArtistCard name={name} image={image} id={_id} key={_id} />
+            ))}
           {status === "resolved" && data?.data?.length === 0 && (
             <Heading as="h4" size={500} marginY={majorScale(5)}>
               No artist found! Please curate your search to contain at least
