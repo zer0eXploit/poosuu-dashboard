@@ -6,10 +6,10 @@ import {
   Card,
   Text,
   SettingsIcon,
-  PeopleIcon,
-  MusicIcon,
+  HatIcon,
+  PlayIcon,
   ListIcon,
-  AddIcon,
+  PeopleIcon,
   KeyIcon,
   majorScale,
   Paragraph,
@@ -24,25 +24,18 @@ import classes from "./styles/Dashboard.module.css";
 
 const quickActions = [
   {
-    title: "Account Settings",
-    icon: <SettingsIcon size={40} />,
-    description:
-      "This is where you can manage you account info and security settings.",
-    to: "/my-account",
-  },
-  {
-    title: "Manage Artists",
-    icon: <PeopleIcon size={40} />,
-    description:
-      "This is where you can search, view, add, edit or delete artist information.",
-    to: "/artists",
-  },
-  {
     title: "Manage Songs",
-    icon: <MusicIcon size={30} />,
+    icon: <PlayIcon size={30} />,
     description:
       "This is where you can search, view, add, edit or delete song information.",
     to: "/songs",
+  },
+  {
+    title: "Manage Artists",
+    icon: <HatIcon size={40} />,
+    description:
+      "This is where you can search, view, add, edit or delete artist information.",
+    to: "/artists",
   },
   {
     title: "Manage Lyrics",
@@ -52,18 +45,25 @@ const quickActions = [
     to: "/lyrics",
   },
   {
+    title: "Account Settings",
+    icon: <SettingsIcon size={40} />,
+    description:
+      "This is where you can manage you account info and security settings.",
+    to: "/my-account",
+  },
+  {
+    title: "Manage Admins",
+    icon: <PeopleIcon size={40} />,
+    description:
+      "This is where you create admin accounts for newcomers and view admin account information.",
+    to: "/my-account/manage-admins",
+  },
+  {
     title: "Manage API Keys",
     icon: <KeyIcon size={40} />,
     description:
       "This is where you manage generate API Keys or create new ones.",
     to: "/my-account/manage-api-keys",
-  },
-  {
-    title: "Manage Admins",
-    icon: <AddIcon size={40} />,
-    description:
-      "This is where you create admin accounts for newcomers and view admin account information.",
-    to: "/my-account/manage-admins",
   },
 ];
 

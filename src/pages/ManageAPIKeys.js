@@ -133,7 +133,7 @@ export default function ManageAPIKeys() {
         aria-labelledby="manage-admins-pannel"
       >
         <Heading as="h3" size={700}>
-          Manage Generated API Keys
+          Manage API Keys
         </Heading>
         <Paragraph marginTop={majorScale(2)}>
           You can manage the generated API keys here. Or create new ones if
