@@ -28,7 +28,6 @@ poosuuAPI.interceptors.request.use(function (config) {
 poosuuAPI.interceptors.response.use(
   (response) => response,
   (error) => {
-    console.log(error);
     if (error?.response?.status === 401) {
       localStorage.removeItem(CONSTANTS.POOSUU_ADMIN_DATA);
       localStorage.removeItem(CONSTANTS.POOSUU_ADMIN_ACCESS_TOKEN);
