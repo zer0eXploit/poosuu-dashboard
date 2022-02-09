@@ -3,10 +3,9 @@ import React, { useRef, useEffect, useState } from "react";
 import {
   Button,
   Card,
+  Heading,
   TextInputField,
   TextareaField,
-  Heading,
-  Pane,
   toaster,
   majorScale,
 } from "evergreen-ui";
@@ -99,7 +98,7 @@ export default function ArtistEdit() {
   };
 
   return (
-    <Pane>
+    <>
       <Heading as="h4" ref={scrollRef} size={700} marginY={majorScale(3)}>
         Edit Artist Information
       </Heading>
@@ -173,6 +172,6 @@ export default function ArtistEdit() {
           </Button>
         </form>
       </Card>
-    </Pane>
+    </>
   );
 }

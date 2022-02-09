@@ -3,6 +3,8 @@ import React from "react";
 import { Pane, Tab, Tablist, majorScale } from "evergreen-ui";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 
+import { Container } from "../components";
+
 const tabs = [
   {
     to: "account-security",
@@ -35,31 +37,33 @@ export default function Account() {
   };
 
   return (
-    <Pane display="flex" height={"100%"} padding={majorScale(2)}>
-      <Tablist
-        marginBottom={16}
-        flexBasis={240}
-        marginRight={24}
-        display="flex"
-        flexDirection="column"
-        alignItems="flex-start"
-        gap={5}
-      >
-        {tabs.map((tab) => (
-          <Tab
-            key={tab.to}
-            id={tab.to}
-            onSelect={() => handleSelect(tab.to)}
-            isSelected={tab.to === lastSegment}
-            aria-controls={`panel-${tab.name}`}
-            width="100%"
-            display="block"
-          >
-            {tab.name}
-          </Tab>
-        ))}
-      </Tablist>
-      <Outlet />
-    </Pane>
+    <Container>
+      <Pane display="flex" height={"100%"} padding={majorScale(3)}>
+        <Tablist
+          marginBottom={16}
+          flexBasis={240}
+          marginRight={24}
+          display="flex"
+          flexDirection="column"
+          alignItems="flex-start"
+          gap={5}
+        >
+          {tabs.map((tab) => (
+            <Tab
+              key={tab.to}
+              id={tab.to}
+              onSelect={() => handleSelect(tab.to)}
+              isSelected={tab.to === lastSegment}
+              aria-controls={`panel-${tab.name}`}
+              width="100%"
+              display="block"
+            >
+              {tab.name}
+            </Tab>
+          ))}
+        </Tablist>
+        <Outlet />
+      </Pane>
+    </Container>
   );
 }

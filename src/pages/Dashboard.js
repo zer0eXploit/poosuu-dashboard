@@ -14,10 +14,11 @@ import {
   majorScale,
   Paragraph,
 } from "evergreen-ui";
+import { useNavigate } from "react-router-dom";
+
+import { Container } from "../components";
 
 import { useAuth } from "../context/auth-context";
-
-import { useNavigate } from "react-router-dom";
 
 import classes from "./styles/Dashboard.module.css";
 
@@ -103,33 +104,31 @@ export default function Dashboard() {
   } = useAuth();
 
   return (
-    <Pane>
-      <Pane marginX="auto" maxWidth={1400} padding={majorScale(3)}>
-        <Heading as="h2" size={900}>
-          {`Konnichiwa ${name}!`}
-        </Heading>
-        <Paragraph size={500} marginY={majorScale(2)}>
-          What would you like to to?
-        </Paragraph>
-        <Pane
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          flexWrap="wrap"
-          gap={majorScale(2)}
-          padding={majorScale(3)}
-        >
-          {quickActions.map((qA) => (
-            <SettingCard
-              key={qA.title}
-              title={qA.title}
-              icon={qA.icon}
-              description={qA.description}
-              to={qA.to}
-            />
-          ))}
-        </Pane>
+    <Container>
+      <Heading as="h2" size={900}>
+        {`Konnichiwa ${name}!`}
+      </Heading>
+      <Paragraph size={500} marginY={majorScale(2)}>
+        What would you like to to?
+      </Paragraph>
+      <Pane
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexWrap="wrap"
+        gap={majorScale(2)}
+        padding={majorScale(3)}
+      >
+        {quickActions.map((qA) => (
+          <SettingCard
+            key={qA.title}
+            title={qA.title}
+            icon={qA.icon}
+            description={qA.description}
+            to={qA.to}
+          />
+        ))}
       </Pane>
-    </Pane>
+    </Container>
   );
 }

@@ -11,7 +11,7 @@ import {
 
 import { useNavigate, useSearchParams, useParams } from "react-router-dom";
 
-import { SongLoader } from "../components";
+import { Container, SongLoader } from "../components";
 
 import { useAsync } from "../hooks";
 
@@ -36,13 +36,12 @@ export default function ArtistSongs() {
 
   if (status === "rejected") {
     return (
-      <Pane display="flex" alignItems="center" flexDirection="column">
+      <Container>
         <Pane
           display="flex"
           justifyContent="center"
           alignItems="center"
           flexDirection="column"
-          maxWidth={1400}
         >
           <Heading as="h3" size={600} marginBottom={majorScale(2)}>
             {error?.response?.data?.message ??
@@ -53,25 +52,19 @@ export default function ArtistSongs() {
             Try Again
           </Button>
         </Pane>
-      </Pane>
+      </Container>
     );
   }
 
   if (status === "pending" || status === "idle") {
     return (
-      <Pane display="flex" alignItems="center" flexDirection="column">
-        <Pane
-          display="flex"
-          gap={majorScale(2)}
-          marginY={majorScale(3)}
-          flexWrap="wrap"
-          maxWidth={1400}
-        >
+      <Container>
+        <Pane display="flex" gap={majorScale(2)} flexWrap="wrap">
           <SongLoader />
           <SongLoader />
           <SongLoader />
         </Pane>
-      </Pane>
+      </Container>
     );
   }
 
@@ -84,21 +77,17 @@ export default function ArtistSongs() {
 
     if (songs.length === 0) {
       return (
-        <Heading as="h4" size={500} margin={majorScale(5)}>
-          There are no songs for the artist yet. Go add some!
-        </Heading>
+        <Container>
+          <Heading as="h4" size={500} margin={majorScale(5)}>
+            There are no songs for the artist yet. Go add some!
+          </Heading>
+        </Container>
       );
     }
 
     return (
-      <Pane display="flex" alignItems="center" flexDirection="column">
-        <Pane
-          display="flex"
-          gap={majorScale(2)}
-          marginY={majorScale(3)}
-          flexWrap="wrap"
-          maxWidth={1400}
-        >
+      <Container>
+        <Pane display="flex" gap={majorScale(2)} flexWrap="wrap">
           {songs.map((song) => {
             return (
               <Card
@@ -135,7 +124,7 @@ export default function ArtistSongs() {
           onNextPage={() => setSearchParams({ page: next })}
           onPreviousPage={() => setSearchParams({ page: prev })}
         ></Pagination>
-      </Pane>
+      </Container>
     );
   }
 }

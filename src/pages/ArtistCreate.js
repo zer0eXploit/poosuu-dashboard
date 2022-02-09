@@ -3,15 +3,15 @@ import React, { useState } from "react";
 import {
   Button,
   Card,
+  Heading,
   TextInputField,
   TextareaField,
-  Heading,
-  Pane,
   toaster,
   majorScale,
 } from "evergreen-ui";
-
 import { useNavigate } from "react-router-dom";
+
+import { Container } from "../components";
 
 import { postArtist } from "../utils/artists";
 
@@ -65,8 +65,8 @@ export default function ArtistCreate() {
   };
 
   return (
-    <Pane padding={majorScale(2)} maxWidth={1400}>
-      <Heading as="h4" size={700} marginY={majorScale(3)}>
+    <Container>
+      <Heading as="h4" size={700} marginBottom={majorScale(3)}>
         Please fill in the following form to create an artist
       </Heading>
       <Card padding={majorScale(2)} elevation={1}>
@@ -135,6 +135,6 @@ export default function ArtistCreate() {
           </Button>
         </form>
       </Card>
-    </Pane>
+    </Container>
   );
 }

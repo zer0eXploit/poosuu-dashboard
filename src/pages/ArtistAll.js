@@ -11,7 +11,7 @@ import {
 
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-import { CardLoader } from "../components";
+import { Container, CardLoader } from "../components";
 
 import { useAsync } from "../hooks";
 
@@ -34,13 +34,12 @@ export default function ArtistAll() {
 
   if (status === "rejected") {
     return (
-      <Pane display="flex" alignItems="center" flexDirection="column">
+      <Container>
         <Pane
           display="flex"
           justifyContent="center"
           alignItems="center"
           flexDirection="column"
-          maxWidth={1400}
         >
           <Heading as="h3" size={600} marginBottom={majorScale(2)}>
             {error?.response?.data?.message ??
@@ -51,27 +50,25 @@ export default function ArtistAll() {
             Try Again
           </Button>
         </Pane>
-      </Pane>
+      </Container>
     );
   }
 
   if (status === "pending" || status === "idle") {
     return (
-      <Pane display="flex" alignItems="center" flexDirection="column">
+      <Container>
         <Pane
           display="flex"
           gap={majorScale(2)}
-          marginY={majorScale(3)}
           flexWrap="wrap"
           justifyContent="center"
-          maxWidth={1400}
         >
           <CardLoader />
           <CardLoader />
           <CardLoader />
           <CardLoader />
         </Pane>
-      </Pane>
+      </Container>
     );
   }
 
@@ -84,22 +81,22 @@ export default function ArtistAll() {
 
     if (artists.length === 0) {
       return (
-        <Heading as="h4" size={500} marginY={majorScale(5)}>
-          No artist found! Please curate your search to contain at least
-          complete first or last name.
-        </Heading>
+        <Container>
+          <Heading as="h4" size={500} marginY={majorScale(5)}>
+            No artist found! Please curate your search to contain at least
+            complete first or last name.
+          </Heading>
+        </Container>
       );
     }
 
     return (
-      <Pane display="flex" alignItems="center" flexDirection="column">
+      <Container>
         <Pane
           display="flex"
           gap={majorScale(2)}
-          marginY={majorScale(3)}
-          justifyContent="center"
           flexWrap="wrap"
-          maxWidth={1400}
+          justifyContent="center"
         >
           {artists.map((artist) => {
             return (
@@ -111,6 +108,8 @@ export default function ArtistAll() {
                 padding={majorScale(2)}
                 elevation={1}
                 background="blue25"
+                width={400}
+                maxWidth={400}
               >
                 <img
                   width="100%"
@@ -156,7 +155,7 @@ export default function ArtistAll() {
           onNextPage={() => setSearchParams({ page: next })}
           onPreviousPage={() => setSearchParams({ page: prev })}
         ></Pagination>
-      </Pane>
+      </Container>
     );
   }
 }

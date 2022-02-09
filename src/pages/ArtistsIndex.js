@@ -11,7 +11,7 @@ import {
 
 import { useNavigate } from "react-router-dom";
 
-import { CardLoader } from "../components";
+import { Container, CardLoader } from "../components";
 
 import { useAsync } from "../hooks";
 
@@ -31,7 +31,7 @@ export default function ArtistsIndex() {
   };
 
   return (
-    <Pane padding={majorScale(2)}>
+    <Container>
       <Heading as="h3" size={900} marginBottom={majorScale(3)}>
         Artists
       </Heading>
@@ -60,6 +60,7 @@ export default function ArtistsIndex() {
               {error?.response?.data?.error ?? "Something went wrong..."}
             </Heading>
           )}
+
           {status === "pending" && (
             <>
               <CardLoader />
@@ -125,6 +126,6 @@ export default function ArtistsIndex() {
           )}
         </Pane>
       </Pane>
-    </Pane>
+    </Container>
   );
 }

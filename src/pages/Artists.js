@@ -10,10 +10,12 @@ import {
 } from "evergreen-ui";
 import { Outlet, useNavigate } from "react-router-dom";
 
+import { Container } from "../components";
+
 export default function Artists() {
   const navigate = useNavigate();
   return (
-    <>
+    <Container>
       <Pane
         display="flex"
         alignItems="center"
@@ -53,6 +55,6 @@ export default function Artists() {
         </Button>
       </Pane>
       <Outlet />
-    </>
+    </Container>
   );
 }

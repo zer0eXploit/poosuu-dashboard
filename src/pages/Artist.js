@@ -12,7 +12,7 @@ import {
 } from "evergreen-ui";
 import { useParams, useNavigate, Outlet } from "react-router-dom";
 
-import { ArtistLoader } from "../components";
+import { Container, ArtistLoader } from "../components";
 
 import { useAsync } from "../hooks";
 
@@ -35,29 +35,31 @@ export default function Artist() {
 
   if (status === "rejected") {
     return (
-      <Pane
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        flexDirection="column"
-      >
-        <Heading as="h3" size={600} marginBottom={majorScale(2)}>
-          {error?.response?.data?.message ??
-            error?.response?.data?.error ??
-            "Something went wrong..."}
-        </Heading>
-        <Button intent="success" appearance="primary" onClick={handleRetry}>
-          Try Again
-        </Button>
-      </Pane>
+      <Container>
+        <Pane
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          flexDirection="column"
+        >
+          <Heading as="h3" size={600} marginBottom={majorScale(2)}>
+            {error?.response?.data?.message ??
+              error?.response?.data?.error ??
+              "Something went wrong..."}
+          </Heading>
+          <Button intent="success" appearance="primary" onClick={handleRetry}>
+            Try Again
+          </Button>
+        </Pane>
+      </Container>
     );
   }
 
   if (status === "idle" || status === "pending") {
     return (
-      <Pane display="flex" justifyContent="center">
+      <Container>
         <ArtistLoader />
-      </Pane>
+      </Container>
     );
   }
 
@@ -67,7 +69,7 @@ export default function Artist() {
     } = data;
 
     return (
-      <Pane padding={majorScale(2)}>
+      <Container>
         <div className={classes["artist-grid"]}>
           <div className={classes["artist-cover-container"]}>
             <img src={cover} alt={name} className={classes["artist-cover"]} />
@@ -129,7 +131,7 @@ export default function Artist() {
             },
           }}
         />
-      </Pane>
+      </Container>
     );
   }
 }
