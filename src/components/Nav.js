@@ -29,7 +29,7 @@ export function Nav() {
       position="fixed"
       background="tint2"
       top={0}
-      zIndex={999}
+      zIndex={5}
       width="100%"
     >
       <Container disableMt>
