@@ -35,7 +35,7 @@ export default function Artist() {
 
   if (status === "rejected") {
     return (
-      <Container>
+      <Container disableMt>
         <Pane
           display="flex"
           justifyContent="center"
@@ -57,7 +57,7 @@ export default function Artist() {
 
   if (status === "idle" || status === "pending") {
     return (
-      <Container>
+      <Container disableMt>
         <ArtistLoader />
       </Container>
     );
@@ -69,7 +69,7 @@ export default function Artist() {
     } = data;
 
     return (
-      <Container>
+      <Container disableMt>
         <div className={classes["artist-grid"]}>
           <div className={classes["artist-cover-container"]}>
             <img src={cover} alt={name} className={classes["artist-cover"]} />

@@ -31,7 +31,7 @@ export default function ArtistsIndex() {
   };
 
   return (
-    <Container>
+    <Container disableMt>
       <Heading as="h3" size={900} marginBottom={majorScale(3)}>
         Artists
       </Heading>

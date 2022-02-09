@@ -36,7 +36,7 @@ export default function ArtistSongs() {
 
   if (status === "rejected") {
     return (
-      <Container>
+      <Container disableMt>
         <Pane
           display="flex"
           justifyContent="center"
@@ -58,7 +58,7 @@ export default function ArtistSongs() {
 
   if (status === "pending" || status === "idle") {
     return (
-      <Container>
+      <Container disableMt>
         <Pane display="flex" gap={majorScale(2)} flexWrap="wrap">
           <SongLoader />
           <SongLoader />
@@ -77,8 +77,8 @@ export default function ArtistSongs() {
 
     if (songs.length === 0) {
       return (
-        <Container>
-          <Heading as="h4" size={500} margin={majorScale(5)}>
+        <Container disableMt>
+          <Heading as="h4" size={500}>
             There are no songs for the artist yet. Go add some!
           </Heading>
         </Container>
@@ -86,7 +86,7 @@ export default function ArtistSongs() {
     }
 
     return (
-      <Container>
+      <Container disableMt>
         <Pane display="flex" gap={majorScale(2)} flexWrap="wrap">
           {songs.map((song) => {
             return (

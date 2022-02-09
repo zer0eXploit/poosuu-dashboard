@@ -65,7 +65,7 @@ export default function ArtistCreate() {
   };
 
   return (
-    <Container>
+    <Container disableMt>
       <Heading as="h4" size={700} marginBottom={majorScale(3)}>
         Please fill in the following form to create an artist
       </Heading>

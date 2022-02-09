@@ -34,7 +34,7 @@ export default function ArtistAll() {
 
   if (status === "rejected") {
     return (
-      <Container>
+      <Container disableMt>
         <Pane
           display="flex"
           justifyContent="center"
@@ -56,7 +56,7 @@ export default function ArtistAll() {
 
   if (status === "pending" || status === "idle") {
     return (
-      <Container>
+      <Container disableMt>
         <Pane
           display="flex"
           gap={majorScale(2)}
@@ -81,7 +81,7 @@ export default function ArtistAll() {
 
     if (artists.length === 0) {
       return (
-        <Container>
+        <Container disableMt>
           <Heading as="h4" size={500} marginY={majorScale(5)}>
             No artist found! Please curate your search to contain at least
             complete first or last name.
@@ -91,7 +91,7 @@ export default function ArtistAll() {
     }
 
     return (
-      <Container>
+      <Container disableMt>
         <Pane
           display="flex"
           gap={majorScale(2)}

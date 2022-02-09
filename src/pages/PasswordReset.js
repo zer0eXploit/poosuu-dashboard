@@ -12,6 +12,8 @@ import {
 } from "evergreen-ui";
 import { useParams } from "react-router-dom";
 
+import { Container } from "../components";
+
 import CONSTANTS from "../utils/constants";
 import { resetPassword } from "../utils/account";
 
@@ -56,56 +58,60 @@ function PasswordReset() {
   };
 
   return (
-    <Pane display="flex" justifyContent="center" alignItems="center">
-      <Card
-        width="50%"
-        maxWidth="500px"
-        elevation={1}
-        marginTop={majorScale(3)}
-        padding={majorScale(3)}
-      >
-        <Heading as="h2" size={500} marginBottom={majorScale(2)}>
-          Please enter passwords below
-        </Heading>
-        <TextInputField
-          description="Must be more than 7 characters."
-          type="password"
-          isInvalid={passwordFieldTouched && password.length < 7}
-          value={password}
-          disabled={status === "pending"}
-          onChange={(e) =>
-            setPassword({ value: e.target.value, touched: true })
-          }
-          label="New Password"
-        />
-        <TextInputField
-          isInvalid={repeatPwFieldTouched && repeatPw.length < 7}
-          value={repeatPw}
-          disabled={status === "pending"}
-          onChange={(e) =>
-            setRepeatPw({ value: e.target.value, touched: true })
-          }
-          type="password"
-          label="Repeat New Password"
-        />
-        {password !== repeatPw && (
-          <Text color="red500" display="block" marginBottom={majorScale(2)}>
-            Passwords do not match.
-          </Text>
-        )}
-        <Button
-          isLoading={status === "pending"}
-          disabled={
-            password.length < 7 || repeatPw.length < 7 || password !== repeatPw
-          }
-          appearance="primary"
-          intent="success"
-          onClick={handlePasswordReset}
+    <Container>
+      <Pane display="flex" justifyContent="center" alignItems="center">
+        <Card
+          width="50%"
+          maxWidth="500px"
+          elevation={1}
+          marginTop={majorScale(3)}
+          padding={majorScale(3)}
         >
-          Reset
-        </Button>
-      </Card>
-    </Pane>
+          <Heading as="h2" size={500} marginBottom={majorScale(2)}>
+            Please enter passwords below
+          </Heading>
+          <TextInputField
+            description="Must be more than 7 characters."
+            type="password"
+            isInvalid={passwordFieldTouched && password.length < 7}
+            value={password}
+            disabled={status === "pending"}
+            onChange={(e) =>
+              setPassword({ value: e.target.value, touched: true })
+            }
+            label="New Password"
+          />
+          <TextInputField
+            isInvalid={repeatPwFieldTouched && repeatPw.length < 7}
+            value={repeatPw}
+            disabled={status === "pending"}
+            onChange={(e) =>
+              setRepeatPw({ value: e.target.value, touched: true })
+            }
+            type="password"
+            label="Repeat New Password"
+          />
+          {password !== repeatPw && (
+            <Text color="red500" display="block" marginBottom={majorScale(2)}>
+              Passwords do not match.
+            </Text>
+          )}
+          <Button
+            isLoading={status === "pending"}
+            disabled={
+              password.length < 7 ||
+              repeatPw.length < 7 ||
+              password !== repeatPw
+            }
+            appearance="primary"
+            intent="success"
+            onClick={handlePasswordReset}
+          >
+            Reset
+          </Button>
+        </Card>
+      </Pane>
+    </Container>
   );
 }
 

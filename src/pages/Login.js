@@ -11,6 +11,8 @@ import {
 } from "evergreen-ui";
 import { useNavigate, Navigate } from "react-router-dom";
 
+import { Container } from "../components";
+
 import { useAuth } from "../context/auth-context";
 
 import { postLogin } from "../utils/auth";
@@ -69,48 +71,50 @@ function Login() {
   if (authData) return <Navigate to="/dashboard" replace />;
 
   return (
-    <Pane display="flex" justifyContent="center" alignItems="center">
-      <Card
-        width="300px"
-        elevation={1}
-        marginTop={majorScale(3)}
-        padding={majorScale(3)}
-      >
-        <Heading as="h2" size={500} marginBottom={majorScale(2)}>
-          Please Login
-        </Heading>
-        <TextInputField
-          isInvalid={
-            usernameOrEmailFieldTouched && usernameOrEmail.length === 0
-          }
-          value={usernameOrEmail}
-          disabled={status === "pending"}
-          onChange={(e) =>
-            setUsernameOrEmail({ value: e.target.value, touched: true })
-          }
-          label="Username"
-        />
-        <TextInputField
-          type="password"
-          isInvalid={passwordFieldTouched && password.length === 0}
-          value={password}
-          disabled={status === "pending"}
-          onChange={(e) =>
-            setPassword({ value: e.target.value, touched: true })
-          }
-          label="Password"
-        />
-        <Button
-          isLoading={status === "pending"}
-          disabled={usernameOrEmail.length === 0 || password.length === 0}
-          appearance="primary"
-          intent="success"
-          onClick={handleLogin}
+    <Container>
+      <Pane display="flex" justifyContent="center" alignItems="center">
+        <Card
+          width="300px"
+          elevation={1}
+          marginTop={majorScale(3)}
+          padding={majorScale(3)}
         >
-          Login
-        </Button>
-      </Card>
-    </Pane>
+          <Heading as="h2" size={500} marginBottom={majorScale(2)}>
+            Please Login
+          </Heading>
+          <TextInputField
+            isInvalid={
+              usernameOrEmailFieldTouched && usernameOrEmail.length === 0
+            }
+            value={usernameOrEmail}
+            disabled={status === "pending"}
+            onChange={(e) =>
+              setUsernameOrEmail({ value: e.target.value, touched: true })
+            }
+            label="Username"
+          />
+          <TextInputField
+            type="password"
+            isInvalid={passwordFieldTouched && password.length === 0}
+            value={password}
+            disabled={status === "pending"}
+            onChange={(e) =>
+              setPassword({ value: e.target.value, touched: true })
+            }
+            label="Password"
+          />
+          <Button
+            isLoading={status === "pending"}
+            disabled={usernameOrEmail.length === 0 || password.length === 0}
+            appearance="primary"
+            intent="success"
+            onClick={handleLogin}
+          >
+            Login
+          </Button>
+        </Card>
+      </Pane>
+    </Container>
   );
 }
 
