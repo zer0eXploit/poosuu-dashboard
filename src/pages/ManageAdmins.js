@@ -155,7 +155,7 @@ export default function ManageAdmins() {
               intent="success"
               onClick={handleClick}
             >
-              Update
+              Create Now
             </Button>
           </Card>
         </Pane>
