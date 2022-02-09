@@ -5,6 +5,7 @@ import {
   Pane,
   Heading,
   Button,
+  Paragraph,
   Text,
   UserIcon,
   HatIcon,
@@ -41,7 +42,16 @@ export function Nav() {
               name={authData?.admin.name}
               size={40}
             />
-            <Text marginLeft={minorScale(3)}>{authData?.admin.username}</Text>
+
+            <Paragraph marginLeft={minorScale(3)}>
+              <Text display="block">{authData?.admin.username}</Text>
+              {new Date().toLocaleString([], {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </Paragraph>
           </Pane>
         ) : (
           "Poo Suu Admins"
