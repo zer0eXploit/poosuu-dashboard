@@ -14,6 +14,7 @@ import { useSearch } from "../hooks";
 
 export function SearchWithSuggestions({
   placeholder,
+  searchConfig,
   ResultCard,
   NoResultInfo,
 }) {
@@ -31,7 +32,7 @@ export function SearchWithSuggestions({
     dispatch({ type: "start" });
 
     const options = {
-      url: "/songs",
+      ...searchConfig,
       params: {
         search: term,
       },
