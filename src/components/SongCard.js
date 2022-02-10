@@ -15,6 +15,8 @@ export function SongCard({ title, coverArt, id }) {
       elevation={1}
       background="blue25"
       justifyItems="center"
+      width="180px"
+      maxWidth="180px"
     >
       <img
         width="150px"
@@ -22,8 +24,14 @@ export function SongCard({ title, coverArt, id }) {
         alt={title}
         style={{ borderRadius: "5px" }}
       />
-      <Heading as="h5" marginBottom="auto" size={800}>
-        {title}
+      <Heading
+        as="h5"
+        marginBottom="auto"
+        size={800}
+        overflowX="auto"
+        title={title}
+      >
+        {`${title.length > 13 ? title.slice(0, 10) + "..." : title}`}
       </Heading>
       <Button onClick={() => navigate(`/dashboard/songs/${id}`)}>View</Button>
     </Card>
