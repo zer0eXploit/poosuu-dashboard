@@ -6,6 +6,7 @@ export { ListLoader } from "./ListLoader";
 export { SongLoader } from "./SongLoader";
 export { CardLoader } from "./CardLoader";
 export { ArtistCard } from "./ArtistCard";
+export { LyricsForm } from "./LyricsForm";
 export { ArtistLoader } from "./ArtistLoader";
 export { PrivateRoute } from "./PrivateRoute";
 export { SearchWithSuggestions } from "./SearchWithSuggestions";

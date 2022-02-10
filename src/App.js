@@ -69,6 +69,20 @@ const SongsIndex = withSuspense(
 const SongCreate = withSuspense(
   React.lazy(() => import(/* webpackPreload: true */ "./pages/SongCreate"))
 );
+const Lyrics = withSuspense(
+  React.lazy(() => import(/* webpackPreload: true */ "./pages/Lyrics"))
+);
+const LyricsIndex = withSuspense(
+  React.lazy(() => import(/* webpackPreload: true */ "./pages/LyricsIndex"))
+);
+const LyricsCreate = withSuspense(
+  React.lazy(() => import(/* webpackPreload: true */ "./pages/LyricsCreate"))
+);
+const LyricsIndividual = withSuspense(
+  React.lazy(() =>
+    import(/* webpackPreload: true */ "./pages/LyricsIndividual")
+  )
+);
 
 function App() {
   return (
@@ -100,6 +114,11 @@ function App() {
             <Route path="create" element={<SongCreate />} />
             <Route path="all" element={<SongAll />} />
             <Route path=":songId" element={<Song />} />
+          </Route>
+          <Route path="lyrics" element={<Lyrics />}>
+            <Route index element={<LyricsIndex />} />
+            <Route path="create" element={<LyricsCreate />} />
+            <Route path=":lyricsId" element={<LyricsIndividual />} />
           </Route>
         </Route>
         <Route path="/password-reset/:token" element={<PasswordReset />} />
