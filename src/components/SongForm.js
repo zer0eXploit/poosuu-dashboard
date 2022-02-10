@@ -40,6 +40,7 @@ export function SongForm({
   const [artist, setArtist] = useState(data?.artist ?? "");
   const [lyrics, setLyrics] = useState(data?.lyrics ?? "");
   const [status, setStatus] = useState("idle");
+  const [delStatus, setDelStatus] = useState("idle");
 
   const navigate = useNavigate();
 
@@ -59,7 +60,6 @@ export function SongForm({
     toaster.notify("Please wait...");
     makeRequest(reqData).then(
       ({ data: { _id } }) => {
-        toaster.closeAll();
         toaster.success("Successfully completed!");
         if (!update) {
           navigate(`/dashboard/songs/${_id}`);
@@ -71,7 +71,7 @@ export function SongForm({
         setStatus("rejected");
         console.error(error);
         const errorResponse = error?.response?.data;
-        toaster.closeAll();
+
         if (errorResponse) {
           toaster.danger(errorResponse?.error ?? errorResponse?.message);
         } else {
@@ -171,7 +171,8 @@ export function SongForm({
             description.length === 0 ||
             coverArt.length === 0 ||
             artist.length === 0 ||
-            lyrics.length === 0
+            lyrics.length === 0 ||
+            delStatus === "pending"
           }
         >
           {update ? "Update" : "Add song"}
@@ -179,12 +180,14 @@ export function SongForm({
         {update && (
           <Button
             intent="danger"
-            isLoading={status === "pending"}
+            isLoading={delStatus === "pending"}
+            disabled={status === "pending"}
             marginTop={majorScale(4)}
             marginLeft={majorScale(2)}
-            onClick={() => {
-              setStatus("pending");
-              deleteSong(data._id);
+            onClick={async () => {
+              setDelStatus("pending");
+              await deleteSong(data._id);
+              toaster.success("Deleted!");
               navigate(-1);
             }}
           >
