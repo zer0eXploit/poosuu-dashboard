@@ -1,6 +1,14 @@
 import React, { useState, useReducer } from "react";
 
-import { Pane, Heading, majorScale, Button } from "evergreen-ui";
+import {
+  Text,
+  Pane,
+  Heading,
+  Paragraph,
+  majorScale,
+  Button,
+} from "evergreen-ui";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Container, SearchWithSuggestions } from "../components";
 
@@ -36,6 +44,39 @@ const reducer = (state, action) => {
   }
 };
 
+function NoResultInfo() {
+  return (
+    <Text display="block" size={500} marginTop="10px">
+      Your search keyword must be a complete song title or{" "}
+      <Link to="/dashboard/songs/create">create a new song now.</Link>
+    </Text>
+  );
+}
+
+function ResultCard({ id, title, coverArt }) {
+  const navigate = useNavigate();
+
+  return (
+    <Pane
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="flex-start"
+      gap="10px"
+      marginY="5px"
+      padding="10px"
+      elevation={1}
+      background="tint2"
+      cursor="pointer"
+      minWidth="150px"
+      onClick={() => navigate(`/dashboard/songs/${id}`)}
+    >
+      <img src={coverArt} alt={title} width="100px" />
+      <Paragraph>{title}</Paragraph>
+    </Pane>
+  );
+}
+
 export default function ArtistsIndex() {
   const [term, setTerm] = useState("");
   const [{ status, data, error }, unsafeDispatch] = useReducer(
@@ -69,6 +110,8 @@ export default function ArtistsIndex() {
             placeholder={"Enter song name"}
             result={data}
             status={status}
+            ResultCard={ResultCard}
+            NoResultInfo={NoResultInfo}
           />
         )}
         {error && (
