@@ -15,6 +15,7 @@ import { useSearch } from "../hooks";
 export function SearchWithSuggestions({
   placeholder,
   searchConfig,
+  height = "50px",
   ResultCard,
   NoResultInfo,
 }) {
@@ -42,17 +43,14 @@ export function SearchWithSuggestions({
   };
 
   return (
-    <form
-      style={{ width: "100%" }}
-      onSubmit={(e) => e.preventDefault()}
-      autoComplete="off"
-    >
+    <Pane width="100%" position="relative">
       <SearchInput
         placeholder={placeholder}
-        height="50px"
+        height={height}
         width="100%"
         value={term}
         onChange={handleSearch}
+        autoComplete="off"
         onFocus={() => setShow(true)}
         onBlur={() => {
           if (!!!term) setShow(false);
@@ -64,6 +62,9 @@ export function SearchWithSuggestions({
           marginTop="4px"
           elevation={1}
           padding="15px"
+          position="absolute"
+          top={height}
+          left="0"
           borderRadius={4}
           background="blue25"
           display="flex"
@@ -71,6 +72,7 @@ export function SearchWithSuggestions({
           maxHeight="300px"
           overflowY="auto"
           gap="10px"
+          zIndex={2}
         >
           {status === "idle" && <Text size={500}>Please start typing...</Text>}
           {status === "pending" && (
@@ -112,10 +114,17 @@ export function SearchWithSuggestions({
           {status === "resolved" &&
             result.length > 0 &&
             result.map(({ _id: id, ...r }) => {
-              return <ResultCard key={id} id={id} {...r} />;
+              return (
+                <ResultCard
+                  key={id}
+                  id={id}
+                  {...r}
+                  hideSuggestions={() => setShow(false)}
+                />
+              );
             })}
         </Pane>
       )}
-    </form>
+    </Pane>
   );
 }
