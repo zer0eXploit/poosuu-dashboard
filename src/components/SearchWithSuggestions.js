@@ -68,7 +68,7 @@ export function SearchWithSuggestions({
           background="blue25"
           display="flex"
           flexWrap="wrap"
-          maxHeight="200px"
+          maxHeight="300px"
           overflowY="auto"
           gap="10px"
         >
