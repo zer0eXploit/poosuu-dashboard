@@ -80,7 +80,7 @@ export default function ArtistSongs() {
       <Container disableMt>
         <Pane display="flex" gap={majorScale(2)} flexWrap="wrap">
           {songs.map(({ title, coverArt, _id }) => (
-            <SongCard title={title} coverArt={coverArt} id={_id} />
+            <SongCard title={title} coverArt={coverArt} id={_id} key={_id} />
           ))}
         </Pane>
         <Pagination
