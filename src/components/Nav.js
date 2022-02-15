@@ -7,8 +7,8 @@ import {
   Button,
   Paragraph,
   Text,
+  AddIcon,
   UserIcon,
-  HatIcon,
   minorScale,
 } from "evergreen-ui";
 import { useNavigate } from "react-router-dom";
@@ -64,11 +64,25 @@ export function Nav() {
           {authData?.admin && (
             <Pane marginLeft="auto">
               <Button
-                iconAfter={HatIcon}
+                iconAfter={AddIcon}
                 marginRight={16}
-                onClick={() => navigate("/dashboard/artists")}
+                onClick={() => navigate("/dashboard/artists/create")}
               >
-                Artists
+                Add Artist
+              </Button>
+              <Button
+                iconAfter={AddIcon}
+                marginRight={16}
+                onClick={() => navigate("/dashboard/songs/create")}
+              >
+                Add Song
+              </Button>
+              <Button
+                iconAfter={AddIcon}
+                marginRight={16}
+                onClick={() => navigate("/dashboard/lyrics/create")}
+              >
+                Add lyrics
               </Button>
               <Button
                 iconAfter={UserIcon}
