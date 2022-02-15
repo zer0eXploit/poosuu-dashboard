@@ -24,18 +24,8 @@ In the environment variables file, `REACT_APP_API_BASE_URL` and `REACT_APP_POOSU
 
 ### Some Screenshots
 
-<p align="center">
-    <img alt="Login" width="100" height="100" src="https://i.ibb.co/9tw8bhs/1.png">
-</p>
-<p align="center">
-    <img alt="Dashboard" width="100" height="100" src="https://i.ibb.co/5jDJdDp/2.png">
-</p>
-<p align="center">
-    <img alt="My Account" width="100" height="100" src="https://i.ibb.co/VNB7pK4/3.png">
-</p>
-<p align="center"> 
-    <img alt="Songs" width="100" height="100" src="https://i.ibb.co/dQnZzL7/4.png">
-</p>
-<p align="center">
-    <img alt="Artists" width="100" height="100" src="https://i.ibb.co/8Pc8mwH/5.png">
-</p>
+![Search Artists!](https://i.ibb.co/9tw8bhs/1.png)
+![Search Songs!](https://i.ibb.co/5jDJdDp/2.png)
+![My Account Screen!](https://i.ibb.co/VNB7pK4/3.png)
+![Home Screen!](https://i.ibb.co/dQnZzL7/4.png)
+![Login Screen!](https://i.ibb.co/8Pc8mwH/5.png)
