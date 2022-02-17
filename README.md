@@ -1,10 +1,10 @@
-## Poo Suu Admin Dashboard
+# Poo Suu Admin Dashboard
 
-### Introduction
+## Introduction
 
 Poo Suu Dashboard is a client app to interact with the [Poo Suu REST API ](https://github.com/zer0eXploit/poosuu-api). It is used for managing managing lyrics, artists and song data. It is built using React and some performance optimization are implemented such as lazy loading for the components with React Lazy.
 
-### Project Requirements
+## Project Requirements
 
 Please install dependencies with `npm install` first.
 
@@ -12,7 +12,7 @@ Some environment variables are required in order to be able to successfully run 
 
 In the environment variables file, `REACT_APP_API_BASE_URL` and `REACT_APP_POOSUU_PUBLIC_API_KEY` need to be set. The public API key can be generated once logged in to the dashboard. It is required for read operations to get data from the API. After generating the API Key set it in the environment variable and restart the server to finish the setup.
 
-### Available Scripts
+## Available Scripts
 
 #### `npm start` - Runs the app in the development mode.
 
@@ -22,10 +22,20 @@ In the environment variables file, `REACT_APP_API_BASE_URL` and `REACT_APP_POOSU
 
 #### `npm run eject` - Change build tool config.
 
-### Some Screenshots
+## Some Screenshots
 
-![Search Artists!](https://i.ibb.co/9tw8bhs/1.png)
-![Search Songs!](https://i.ibb.co/5jDJdDp/2.png)
-![My Account Screen!](https://i.ibb.co/VNB7pK4/3.png)
-![Home Screen!](https://i.ibb.co/dQnZzL7/4.png)
-![Login Screen!](https://i.ibb.co/8Pc8mwH/5.png)
+<p align="center">
+   <img src="https://i.ibb.co/9tw8bhs/1.png" alt="Log Screen"/>
+</p>
+<p align="center">
+   <img src="https://i.ibb.co/5jDJdDp/2.png" alt="Dashboard"/>
+</p>
+<p align="center">
+   <img src="https://i.ibb.co/VNB7pK4/3.png" alt="Account"/>
+</p>
+<p align="center">
+   <img src="https://i.ibb.co/dQnZzL7/4.png" alt="Search Songs"/>
+</p>
+<p align="center">
+   <img src="https://i.ibb.co/8Pc8mwH/5.png" alt="Search Artists"/>
+</p>
