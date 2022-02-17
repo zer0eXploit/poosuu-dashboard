@@ -1,5 +1,7 @@
 # Poo Suu Admin Dashboard
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/db3aefab-b6de-45f7-9a1f-8e728bcfff18/deploy-status)](https://app.netlify.com/sites/poosuu-dashboard/deploys)
+
 ## Introduction
 
 Poo Suu Dashboard is a client app to interact with the [Poo Suu REST API ](https://github.com/zer0eXploit/poosuu-api). It is used for managing managing lyrics, artists and song data. It is built using React and some performance optimization are implemented such as lazy loading for the components with React Lazy.
