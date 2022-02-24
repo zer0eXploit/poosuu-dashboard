@@ -24,7 +24,7 @@ export default function ArtistsIndex() {
         Artists
       </Heading>
       <SearchWithSuggestions
-        placeholder={"Enter song name"}
+        placeholder={"Enter artist name to search..."}
         searchConfig={{ url: "/artists" }}
         ResultCard={ArtistCard}
         NoResultInfo={NoResultInfo}

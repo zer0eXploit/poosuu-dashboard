@@ -50,7 +50,7 @@ export default function ArtistsIndex() {
       </Heading>
       <Pane display="flex" flexDirection="column">
         <SearchWithSuggestions
-          placeholder={"Enter song name"}
+          placeholder={"Enter song name to search..."}
           searchConfig={{ url: "/songs" }}
           ResultCard={ResultCard}
           NoResultInfo={NoResultInfo}

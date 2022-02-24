@@ -12,7 +12,7 @@ export default function LyricsIndex() {
         Lyrics
       </Heading>
       <SearchWithSuggestions
-        placeholder={"Enter song name"}
+        placeholder={"Enter lyrics title to search..."}
         searchConfig={{ url: "/lyrics" }}
         ResultCard={LyricsResult}
         NoResultInfo={NoLyricsResultInfo}

@@ -13,7 +13,7 @@ import {
 import { useSearch } from "../hooks";
 
 export function SearchWithSuggestions({
-  placeholder,
+  placeholder = "Please enter search term...",
   searchConfig,
   height = "50px",
   ResultCard,
