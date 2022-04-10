@@ -72,7 +72,7 @@ export function SearchWithSuggestions({
           maxHeight="300px"
           overflowY="auto"
           gap="10px"
-          zIndex={2}
+          zIndex={5}
         >
           {status === "idle" && <Text size={500}>Please start typing...</Text>}
           {status === "pending" && (
@@ -116,10 +116,11 @@ export function SearchWithSuggestions({
             result.map(({ _id: id, ...r }) => {
               return (
                 <ResultCard
-                  key={id}
+                  key={id ?? r.id}
                   id={id}
                   {...r}
                   hideSuggestions={() => setShow(false)}
+                  clearSearchField={() => setTerm("")}
                 />
               );
             })}

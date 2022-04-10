@@ -37,6 +37,7 @@ export function SongForm({
     value: data?.coverArt ?? "",
     touched: false,
   });
+
   const [artist, setArtist] = useState(data?.artist ?? "");
   const [lyrics, setLyrics] = useState(data?.lyrics ?? "");
   const [status, setStatus] = useState("idle");
@@ -119,6 +120,48 @@ export function SongForm({
           }}
           label="Cover Url"
           disabled={status === "pending"}
+          description="You can either set your own image url or search and select images from
+          Spotify below."
+        />
+        {coverArt && coverArt.startsWith("http") && (
+          <>
+            <Paragraph display="block" marginBottom={majorScale(2)}>
+              Preview
+            </Paragraph>
+            <img
+              width="250px"
+              src={coverArt}
+              alt={coverArt}
+              style={{
+                borderRadius: "5px",
+                display: "block",
+                marginBottom: "16px",
+              }}
+            />
+            <Button
+              marginBottom={majorScale(2)}
+              onClick={() =>
+                setCover({
+                  value: "",
+                  touched: true,
+                })
+              }
+            >
+              Remove Photo
+            </Button>
+          </>
+        )}
+        <SearchWithSuggestions
+          placeholder={"Enter song title to search for cover."}
+          height="50px"
+          searchConfig={{ url: "/songs/spotify" }}
+          ResultCard={CoverImageResult((url) =>
+            setCover({
+              value: url,
+              touched: true,
+            })
+          )}
+          NoResultInfo={NoCoverImageResultInfo}
         />
         <Heading
           as="h3"
@@ -128,7 +171,9 @@ export function SongForm({
         >
           Artist ID
         </Heading>
-        <Paragraph marginBottom={majorScale(2)}>Selected - {artist}</Paragraph>
+        <Paragraph marginBottom={majorScale(2)}>
+          Selected - {artist.length > 0 ? artist : "None"}
+        </Paragraph>
         <Paragraph display="block" marginBottom={majorScale(2)} color="gray700">
           Please note: when searching, keywords must be complete and partial
           texts are not allowed.
@@ -148,7 +193,9 @@ export function SongForm({
         >
           Lyrics ID
         </Heading>
-        <Paragraph marginBottom={majorScale(2)}>Selected - {lyrics}</Paragraph>
+        <Paragraph marginBottom={majorScale(2)}>
+          Selected - {lyrics.length > 0 ? lyrics : "None"}
+        </Paragraph>
         <Paragraph display="block" marginBottom={majorScale(2)} color="gray700">
           Please note: when searching, keywords must be complete and partial
           texts are not allowed.
@@ -248,6 +295,49 @@ function NoArtistResultInfo() {
         <Link to="/dashboard/artists/create" target="_blank">
           Click here to create artist profile now!
         </Link>
+      </Text>
+    </Pane>
+  );
+}
+
+function CoverImageResult(click) {
+  return (props) => {
+    const imageUrl = props?.album?.images?.[0]?.url;
+    const { hideSuggestions, clearSearchField } = props;
+
+    if (!imageUrl) return null;
+
+    return (
+      <Pane
+        elevation={1}
+        padding={5}
+        borderRadius="5px"
+        overflow="hidden"
+        display="flex"
+        alignItems="center"
+        onClick={() => {
+          click(imageUrl);
+          hideSuggestions();
+          clearSearchField();
+        }}
+        cursor="pointer"
+      >
+        <img
+          width="200px"
+          src={imageUrl}
+          alt={imageUrl}
+          style={{ borderRadius: "5px" }}
+        />
+      </Pane>
+    );
+  };
+}
+
+function NoCoverImageResultInfo() {
+  return (
+    <Pane>
+      <Text display="block" size={500}>
+        No image was found. Kindly refine your search keyword.
       </Text>
     </Pane>
   );
