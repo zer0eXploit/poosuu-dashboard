@@ -55,6 +55,7 @@ function Login() {
         navigate("/dashboard", { replace: true });
       },
       (error) => {
+        toaster.closeAll();
         const errorResponse = error?.response?.data;
         if (errorResponse) {
           console.error(errorResponse);

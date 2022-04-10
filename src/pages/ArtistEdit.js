@@ -71,7 +71,7 @@ export default function ArtistEdit() {
         setUpdateStatus("rejected");
         console.error(error);
         const errorResponse = error?.response?.data;
-
+        toaster.closeAll();
         if (errorResponse) {
           toaster.danger(errorResponse?.error ?? errorResponse?.message);
         }
@@ -89,7 +89,7 @@ export default function ArtistEdit() {
         setDeleteStatus("rejected");
         console.error(error);
         const errorResponse = error?.response?.data;
-
+        toaster.closeAll();
         if (errorResponse) {
           toaster.danger(errorResponse?.error ?? errorResponse?.message);
         }

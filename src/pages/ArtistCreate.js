@@ -45,9 +45,11 @@ export default function ArtistCreate() {
       image: artistImage,
     };
     setStatus("pending");
+    toaster.closeAll();
     toaster.notify("Creating artist. Please wait...");
     postArtist(data).then(
       ({ data: { _id } }) => {
+        toaster.closeAll();
         toaster.success("Artist created!");
         setStatus("resolved");
         navigate(`/dashboard/artists/${_id}`);
@@ -56,7 +58,7 @@ export default function ArtistCreate() {
         setStatus("rejected");
         console.error(error);
         const errorResponse = error?.response?.data;
-
+        toaster.closeAll();
         if (errorResponse) {
           toaster.danger(errorResponse?.error ?? errorResponse?.message);
         }

@@ -58,9 +58,11 @@ export function SongForm({
     if (update) reqData.id = data._id;
 
     setStatus("pending");
+    toaster.closeAll();
     toaster.notify("Please wait...");
     makeRequest(reqData).then(
       ({ data: { _id } }) => {
+        toaster.closeAll();
         toaster.success("Successfully completed!");
         if (!update) {
           navigate(`/dashboard/songs/${_id}`);
@@ -72,7 +74,7 @@ export function SongForm({
         setStatus("rejected");
         console.error(error);
         const errorResponse = error?.response?.data;
-
+        toaster.closeAll();
         if (errorResponse) {
           toaster.danger(errorResponse?.error ?? errorResponse?.message);
         } else {
@@ -234,6 +236,7 @@ export function SongForm({
             onClick={async () => {
               setDelStatus("pending");
               await deleteSong(data._id);
+              toaster.closeAll();
               toaster.success("Deleted!");
               navigate(-1);
             }}

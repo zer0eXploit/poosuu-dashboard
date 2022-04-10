@@ -81,11 +81,13 @@ export default function AccountSecurity() {
     updatePassword({ oldPassword, newPassword }).then(
       ({ data: { message } }) => {
         setStatus("resolved");
+        toaster.closeAll();
         toaster.success(message);
       },
       (error) => {
         setStatus("rejected");
         console.error(error);
+        toaster.closeAll();
         const errorResponse = error?.response?.data;
         if (errorResponse) {
           toaster.danger(errorResponse.message);
@@ -101,12 +103,14 @@ export default function AccountSecurity() {
     requestPasswordResetEmail({ email: admin.email }).then(
       ({ data: { message } }) => {
         setPwResetStatus("resolved");
+        toaster.closeAll();
         toaster.success(message);
       },
       (error) => {
         setPwResetStatus("rejected");
         console.error(error);
         const errorResponse = error?.response?.data;
+        toaster.closeAll();
         if (errorResponse) {
           toaster.danger(errorResponse.message);
           setTryAfter(errorResponse.retryAfter);

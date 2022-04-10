@@ -51,9 +51,11 @@ export function LyricsForm({
     if (update) reqData.id = data._id;
 
     setStatus("pending");
+    toaster.closeAll();
     toaster.notify("Please wait...");
     makeRequest(reqData).then(
       ({ data: { _id } }) => {
+        toaster.closeAll();
         toaster.success("Success!");
         if (!update) {
           navigate(`/dashboard/lyrics/${_id}`);
@@ -65,6 +67,8 @@ export function LyricsForm({
         setStatus("rejected");
         console.error(error);
         const errorResponse = error?.response?.data;
+
+        toaster.closeAll();
 
         if (errorResponse) {
           toaster.danger(errorResponse?.error ?? errorResponse?.message);
@@ -164,6 +168,7 @@ export function LyricsForm({
             onClick={async () => {
               setDelStatus("pending");
               await deleteLyrics(data._id);
+              toaster.closeAll();
               toaster.success("Deleted!");
               navigate("/dashboard/lyrics");
             }}

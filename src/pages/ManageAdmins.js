@@ -66,6 +66,7 @@ export default function ManageAdmins() {
     }).then(
       () => {
         setStatus("resolved");
+        toaster.closeAll();
         toaster.success("Admin created! They should get an email soon.");
         navigate("/dashboard/my-account");
       },
@@ -73,7 +74,7 @@ export default function ManageAdmins() {
         setStatus("rejected");
         console.error(error);
         const errorResponse = error?.response?.data;
-
+        toaster.closeAll();
         if (errorResponse) {
           toaster.danger(errorResponse.error);
         }

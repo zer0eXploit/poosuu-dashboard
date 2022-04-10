@@ -40,6 +40,7 @@ export default function ManageAPIKeys() {
     let apiKey = event.target.elements["apiKey"].value;
 
     if (!!!apiKey) {
+      toaster.closeAll();
       toaster.warning("Please enter an API Key!");
       return;
     }
@@ -52,6 +53,7 @@ export default function ManageAPIKeys() {
       },
       (error) => {
         console.error(error);
+        toaster.closeAll();
         toaster.danger("Error getting API key info.");
         setGetAPIKeyStatus("rejected");
       }
@@ -64,6 +66,7 @@ export default function ManageAPIKeys() {
     let hostName = event.target.elements["host"].value;
 
     if (!!!hostName) {
+      toaster.closeAll();
       toaster.warning("Please enter a hostname!");
       return;
     }
@@ -79,7 +82,7 @@ export default function ManageAPIKeys() {
     createAPIKey(hostName).then(
       ({ data: { key, host } }) => {
         setCreateAPIKeyStatus("resolved");
-
+        toaster.closeAll();
         // Copy API Key to ClipBoard
         navigator.clipboard.writeText(key).then(
           () =>
@@ -93,6 +96,7 @@ export default function ManageAPIKeys() {
         setCreateAPIKeyStatus("rejected");
         console.error(error);
         const errorResponse = error?.response?.data;
+        toaster.closeAll();
         if (errorResponse) {
           toaster.warning(errorResponse.error ?? errorResponse.message);
         } else {
@@ -103,6 +107,7 @@ export default function ManageAPIKeys() {
   };
 
   const handleDeleteAPIKey = async (key) => {
+    toaster.closeAll();
     toaster.notify("Deleting the key...");
     deleteGeneratedAPIKey(key).then(
       () => {
@@ -262,6 +267,7 @@ export default function ManageAPIKeys() {
                             intent="success"
                             appearance="primary"
                             onClick={() => {
+                              toaster.closeAll();
                               navigator.clipboard.writeText(apiKey).then(
                                 () =>
                                   toaster.success("Key copied to clipboard."),

@@ -45,6 +45,7 @@ function PasswordReset() {
       },
       (error) => {
         const errorResponse = error?.response?.data;
+        toaster.closeAll();
         if (errorResponse) {
           console.error(errorResponse);
           toaster.danger(errorResponse.message);
