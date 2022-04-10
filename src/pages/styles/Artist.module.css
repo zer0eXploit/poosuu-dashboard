@@ -13,6 +13,9 @@
 .artist-cover {
   display: block;
   width: 100%;
+  object-fit: cover;
+  object-position: 50% 10%;
+  max-height: 200px;
 }
 
 .artist-image-container {

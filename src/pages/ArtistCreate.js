@@ -6,12 +6,15 @@ import {
   Heading,
   TextInputField,
   TextareaField,
+  Paragraph,
+  Pane,
+  Text,
   toaster,
   majorScale,
 } from "evergreen-ui";
 import { useNavigate } from "react-router-dom";
 
-import { Container } from "../components";
+import { Container, SearchWithSuggestions } from "../components";
 
 import { postArtist } from "../utils/artists";
 
@@ -109,6 +112,37 @@ export default function ArtistCreate() {
             label="Artist Cover Url"
             disabled={status === "pending"}
           />
+          {artistCover && artistCover.startsWith("http") && (
+            <>
+              <Paragraph display="block" marginBottom={majorScale(2)}>
+                Preview
+              </Paragraph>
+              <img
+                src={artistCover}
+                alt={artistCover}
+                style={{
+                  borderRadius: "5px",
+                  maxHeight: "200px",
+                  width: "100%",
+                  display: "block",
+                  marginBottom: "16px",
+                  objectFit: "cover",
+                  objectPosition: "50% 10%",
+                }}
+              />
+              <Button
+                marginBottom={majorScale(2)}
+                onClick={() =>
+                  setCover({
+                    value: "",
+                    touched: true,
+                  })
+                }
+              >
+                Remove Photo
+              </Button>
+            </>
+          )}
           <TextInputField
             isInvalid={imageTouched && artistImage.length === 0}
             value={artistImage}
@@ -120,11 +154,55 @@ export default function ArtistCreate() {
             }}
             label="Artist Image Url"
             disabled={status === "pending"}
+            description="You can either enter your own artist image url or search below from Spotify."
+          />
+          {artistImage && artistImage.startsWith("http") && (
+            <>
+              <Paragraph display="block" marginBottom={majorScale(2)}>
+                Preview
+              </Paragraph>
+              <img
+                width="250px"
+                height="250px"
+                src={artistImage}
+                alt={artistImage}
+                style={{
+                  borderRadius: "5px",
+                  display: "block",
+                  marginBottom: "16px",
+                  objectFit: "cover",
+                }}
+              />
+              <Button
+                marginBottom={majorScale(2)}
+                onClick={() =>
+                  setImage({
+                    value: "",
+                    touched: true,
+                  })
+                }
+              >
+                Remove Photo
+              </Button>
+            </>
+          )}
+          <SearchWithSuggestions
+            placeholder={"Enter artist name to search for profile image."}
+            height="50px"
+            searchConfig={{ url: "/artists/spotify" }}
+            ResultCard={ArtistImageResult((url) =>
+              setImage({
+                value: url,
+                touched: true,
+              })
+            )}
+            NoResultInfo={NoArtistImageResultInfo}
           />
           <Button
             type="submit"
             intent="success"
             appearance="primary"
+            marginTop={majorScale(2)}
             isLoading={status === "pending"}
             disabled={
               artistName.length === 0 ||
@@ -138,5 +216,49 @@ export default function ArtistCreate() {
         </form>
       </Card>
     </Container>
+  );
+}
+
+function ArtistImageResult(setArtistImage) {
+  return (props) => {
+    const imageUrl = props?.images?.[0]?.url;
+    const { hideSuggestions, clearSearchField } = props;
+
+    if (!imageUrl) return null;
+
+    return (
+      <Pane
+        elevation={1}
+        padding={5}
+        borderRadius="5px"
+        overflow="hidden"
+        display="flex"
+        alignItems="center"
+        onClick={() => {
+          setArtistImage(imageUrl);
+          hideSuggestions();
+          clearSearchField();
+        }}
+        cursor="pointer"
+      >
+        <img
+          width="150px"
+          height="150px"
+          src={imageUrl}
+          alt={imageUrl}
+          style={{ borderRadius: "5px", objectFit: "cover" }}
+        />
+      </Pane>
+    );
+  };
+}
+
+function NoArtistImageResultInfo() {
+  return (
+    <Pane>
+      <Text display="block" size={500}>
+        No image was found. Kindly refine your search keyword.
+      </Text>
+    </Pane>
   );
 }
