@@ -9,4 +9,6 @@ export { ArtistCard } from "./ArtistCard";
 export { LyricsForm } from "./LyricsForm";
 export { ArtistLoader } from "./ArtistLoader";
 export { PrivateRoute } from "./PrivateRoute";
+export { ImageCropper } from "./ImageCropper/ImageCropper";
+export { ConfirmActionDialog } from "./ConfirmActionDialog";
 export { SearchWithSuggestions } from "./SearchWithSuggestions";

@@ -70,3 +70,19 @@ export function deleteArtist(id) {
     method: "DELETE",
   });
 }
+
+export function uploadArtistPhoto({ image, width, height, left, top }) {
+  const formData = new FormData();
+
+  formData.append("image", image);
+  formData.append("width", width);
+  formData.append("height", height);
+  formData.append("left", left);
+  formData.append("top", top);
+
+  return poosuuAPI.request({
+    url: `/artists/cover`,
+    method: "POST",
+    data: formData,
+  });
+}

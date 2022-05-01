@@ -14,7 +14,7 @@ import {
 } from "evergreen-ui";
 import { useNavigate } from "react-router-dom";
 
-import { Container, SearchWithSuggestions } from "../components";
+import { Container, SearchWithSuggestions, ImageCropper } from "../components";
 
 import { postArtist } from "../utils/artists";
 
@@ -110,39 +110,19 @@ export default function ArtistCreate() {
               });
             }}
             label="Artist Cover Url"
-            disabled={status === "pending"}
+            description="This field will be auto set when you upload a photo below."
+            disabled
           />
-          {artistCover && artistCover.startsWith("http") && (
-            <>
-              <Paragraph display="block" marginBottom={majorScale(2)}>
-                Preview
-              </Paragraph>
-              <img
-                src={artistCover}
-                alt={artistCover}
-                style={{
-                  borderRadius: "5px",
-                  maxHeight: "200px",
-                  width: "100%",
-                  display: "block",
-                  marginBottom: "16px",
-                  objectFit: "cover",
-                  objectPosition: "50% 10%",
-                }}
-              />
-              <Button
-                marginBottom={majorScale(2)}
-                onClick={() =>
-                  setCover({
-                    value: "",
-                    touched: true,
-                  })
-                }
-              >
-                Remove Photo
-              </Button>
-            </>
-          )}
+          <Pane marginBottom={majorScale(4)}>
+            <ImageCropper
+              setImageUrl={(uploadedUrl) => {
+                setCover({
+                  value: uploadedUrl,
+                  touched: true,
+                });
+              }}
+            />
+          </Pane>
           <TextInputField
             isInvalid={imageTouched && artistImage.length === 0}
             value={artistImage}
