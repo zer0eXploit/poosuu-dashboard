@@ -2,7 +2,7 @@ import React, { useState, createContext, useContext } from "react";
 
 import CONSTANTS from "../utils/constants";
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 export function AuthProvider(props) {
   const [authData, setAuthData] = useState(() => {
