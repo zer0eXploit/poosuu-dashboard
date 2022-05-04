@@ -25,7 +25,7 @@ describe("Nav should", () => {
     cleanup();
   });
 
-  it("show heading text 'Poo Suu Admins' when user is not logged in.", () => {
+  it("show a heading 'Poo Suu Admins' when user is not logged in.", () => {
     const MockedNav = () => {
       return (
         <Router>
