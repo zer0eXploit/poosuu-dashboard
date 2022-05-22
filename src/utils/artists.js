@@ -38,7 +38,7 @@ export function getArtistSongs(id, page = 1) {
   });
 }
 
-export function postArtist({ name, bio, cover, image }) {
+export function postArtist({ name, bio, cover, image, coverDeleteUrl }) {
   return poosuuAPI.request({
     url: `/artists`,
     method: "POST",
@@ -47,6 +47,7 @@ export function postArtist({ name, bio, cover, image }) {
       bio,
       cover,
       image,
+      coverDeleteUrl,
     },
   });
 }

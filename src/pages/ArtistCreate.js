@@ -36,6 +36,7 @@ export default function ArtistCreate() {
     value: "",
     touched: false,
   });
+  const [coverDeleteUrl, setCoverDeleteUrl] = useState("");
 
   const [status, setStatus] = useState("idle");
 
@@ -46,6 +47,7 @@ export default function ArtistCreate() {
       bio: artistBio,
       cover: artistCover,
       image: artistImage,
+      coverDeleteUrl,
     };
     setStatus("pending");
     toaster.closeAll();
@@ -115,11 +117,12 @@ export default function ArtistCreate() {
           />
           <Pane marginBottom={majorScale(4)}>
             <ImageCropper
-              setImageUrl={(uploadedUrl) => {
+              setImageUrl={(uploadedUrl, deleteUrl = "") => {
                 setCover({
                   value: uploadedUrl,
                   touched: true,
                 });
+                setCoverDeleteUrl(deleteUrl);
               }}
             />
           </Pane>

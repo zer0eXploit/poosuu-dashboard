@@ -42,7 +42,7 @@ export const ImageCropper = ({ setImageUrl }) => {
         toaster.closeAll();
         toaster.success("Successfully uploaded!");
         setStatus("resolved");
-        setImageUrl(data?.data?.url);
+        setImageUrl(data?.data?.url, data?.data?.deleteUrl);
         setDeleteUrl(data?.data?.deleteUrl);
       },
       (error) => {
