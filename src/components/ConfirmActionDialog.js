@@ -9,6 +9,8 @@ export const ConfirmActionDialog = ({
   actionConfirmBtnText = "Proceed",
   intent = "danger",
   proceedActionFunc = () => null,
+  marginTop = 16,
+  isLoading = false,
 }) => {
   const [isShown, setIsShown] = useState(false);
   return (
@@ -32,9 +34,10 @@ export const ConfirmActionDialog = ({
       </Dialog>
 
       <Button
-        marginTop={16}
+        marginTop={marginTop}
         intent={intent}
         appearance="primary"
+        isLoading={isLoading}
         onClick={(e) => {
           e.preventDefault();
           setIsShown(true);
