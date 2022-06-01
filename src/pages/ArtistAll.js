@@ -48,12 +48,7 @@ export default function ArtistAll() {
   if (status === "pending" || status === "idle") {
     return (
       <Container disableMt>
-        <Pane
-          display="flex"
-          gap={majorScale(2)}
-          flexWrap="wrap"
-          justifyContent="center"
-        >
+        <Pane display="flex" gap={majorScale(2)} flexWrap="wrap">
           <CardLoader />
           <CardLoader />
           <CardLoader />
@@ -83,23 +78,20 @@ export default function ArtistAll() {
 
     return (
       <Container disableMt>
-        <Pane
-          display="flex"
-          gap={majorScale(2)}
-          flexWrap="wrap"
-          justifyContent="center"
-        >
+        <Pane display="flex" gap={majorScale(2)} flexWrap="wrap">
           {artists.map(({ name, image, _id }) => (
             <ArtistCard name={name} image={image} id={_id} key={_id} />
           ))}
         </Pane>
-        <Pagination
-          page={current}
-          totalPages={pages}
-          onPageChange={(page) => setSearchParams({ page })}
-          onNextPage={() => setSearchParams({ page: next })}
-          onPreviousPage={() => setSearchParams({ page: prev })}
-        ></Pagination>
+        <Pane display="flex" justifyContent="center">
+          <Pagination
+            page={current}
+            totalPages={pages}
+            onPageChange={(page) => setSearchParams({ page })}
+            onNextPage={() => setSearchParams({ page: next })}
+            onPreviousPage={() => setSearchParams({ page: prev })}
+          ></Pagination>
+        </Pane>
       </Container>
     );
   }

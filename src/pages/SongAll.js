@@ -81,13 +81,15 @@ export default function SongAll() {
             <SongCard title={title} coverArt={coverArt} id={_id} key={_id} />
           ))}
         </Pane>
-        <Pagination
-          page={current}
-          totalPages={pages}
-          onPageChange={(page) => setSearchParams({ page })}
-          onNextPage={() => setSearchParams({ page: next })}
-          onPreviousPage={() => setSearchParams({ page: prev })}
-        ></Pagination>
+        <Pane display="flex" justifyContent="center">
+          <Pagination
+            page={current}
+            totalPages={pages}
+            onPageChange={(page) => setSearchParams({ page })}
+            onNextPage={() => setSearchParams({ page: next })}
+            onPreviousPage={() => setSearchParams({ page: prev })}
+          ></Pagination>
+        </Pane>
       </Container>
     );
   }
