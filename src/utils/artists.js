@@ -52,7 +52,7 @@ export function postArtist({ name, bio, cover, image, coverDeleteUrl }) {
   });
 }
 
-export function putArtist({ id, name, bio, cover, image }) {
+export function putArtist({ id, name, bio, cover, image, coverDeleteUrl }) {
   return poosuuAPI.request({
     url: `/artists/${id}`,
     method: "PUT",
@@ -61,6 +61,7 @@ export function putArtist({ id, name, bio, cover, image }) {
       bio,
       cover,
       image,
+      coverDeleteUrl,
     },
   });
 }

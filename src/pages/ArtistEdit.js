@@ -15,7 +15,11 @@ import {
 
 import { useNavigate, useLocation, useOutletContext } from "react-router-dom";
 
-import { SearchWithSuggestions } from "../components";
+import {
+  SearchWithSuggestions,
+  ImageCropper,
+  ConfirmActionDialog,
+} from "../components";
 
 import { putArtist, deleteArtist } from "../utils/artists";
 
@@ -25,7 +29,7 @@ export default function ArtistEdit() {
   const navigate = useNavigate();
   const {
     data: {
-      data: { _id, name, bio, cover, image },
+      data: { _id, name, bio, cover, image, coverDeleteUrl },
     },
     update,
   } = useOutletContext();
@@ -46,6 +50,9 @@ export default function ArtistEdit() {
     value: image,
     touched: false,
   });
+  const [coverDelUrl, setCoverDelUrl] = useState(coverDeleteUrl);
+
+  const [firstTimeRemove, setFirstTimeRemove] = useState(true);
 
   const [updateStatus, setUpdateStatus] = useState("idle");
   const [deleteStatus, setDeleteStatus] = useState("idle");
@@ -65,6 +72,7 @@ export default function ArtistEdit() {
       bio: artistBio,
       cover: artistCover,
       image: artistImage,
+      coverDeleteUrl: coverDelUrl,
     };
     setUpdateStatus("pending");
     putArtist(data).then(
@@ -141,37 +149,38 @@ export default function ArtistEdit() {
               });
             }}
             label="Artist Cover"
+            disabled
           />
-          {artistCover && artistCover.startsWith("http") && (
-            <>
-              <Paragraph display="block" marginBottom={majorScale(2)}>
-                Preview
-              </Paragraph>
-              <img
-                src={artistCover}
-                alt={artistCover}
-                style={{
-                  borderRadius: "5px",
-                  maxHeight: "200px",
-                  width: "100%",
-                  display: "block",
-                  marginBottom: "16px",
-                  objectFit: "cover",
-                  objectPosition: "50% 10%",
+          {!firstTimeRemove && (
+            <Pane marginBottom={majorScale(3)}>
+              <ImageCropper
+                setImageUrl={(uploadedUrl, deleteUrl = "") => {
+                  setCover({
+                    value: uploadedUrl,
+                    touched: true,
+                  });
+                  setCoverDelUrl(deleteUrl);
                 }}
               />
-              <Button
-                marginBottom={majorScale(2)}
-                onClick={() =>
+            </Pane>
+          )}
+          {firstTimeRemove && (
+            <Pane marginBottom={12}>
+              <ConfirmActionDialog
+                actionBtnText="Remove Current Photo"
+                actionInfo="Are you sure you want to remove the artist cover image? Please also delete the image from the link you are taken."
+                actionConfirmBtnText="Remove (This will open a new tab)"
+                proceedActionFunc={() => {
                   setCover({
                     value: "",
                     touched: true,
-                  })
-                }
-              >
-                Remove Photo
-              </Button>
-            </>
+                  });
+                  setFirstTimeRemove(false);
+                  window.open(coverDelUrl);
+                }}
+                marginTop={0}
+              />
+            </Pane>
           )}
           <TextInputField
             isInvalid={imageTouched && artistImage.length === 0}
@@ -241,7 +250,7 @@ export default function ArtistEdit() {
           >
             Update
           </Button>
-          <Button
+          {/* <Button
             intent="danger"
             isLoading={deleteStatus === "pending"}
             onClick={handleDelete}
@@ -249,7 +258,17 @@ export default function ArtistEdit() {
             marginTop={majorScale(2)}
           >
             Delete
-          </Button>
+          </Button> */}
+          <Pane display="inline-block" marginLeft={majorScale(2)}>
+            <ConfirmActionDialog
+              actionBtnText="Delete Artist"
+              actionInfo="Are you sure you want to delete the artist?"
+              actionConfirmBtnText="Delete"
+              proceedActionFunc={handleDelete}
+              marginTop={majorScale(2)}
+              isLoading={deleteStatus === "pending"}
+            />
+          </Pane>
         </form>
       </Card>
     </>
