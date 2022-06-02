@@ -41,3 +41,9 @@ In the environment variables file, `REACT_APP_API_BASE_URL` and `REACT_APP_POOSU
 <p align="center">
    <img src="https://i.ibb.co/8Pc8mwH/5.png" alt="Search Artists"/>
 </p>
+<p align="center">
+   <img src="https://i.ibb.co/9qqpwLX/artist-edit.jpg" alt="Timing Tool"/>
+</p>
+<p align="center">
+   <img src="https://i.ibb.co/6Yr2Bty/lyrics-timing-tool.jpg" alt="Timing Tool"/>
+</p>

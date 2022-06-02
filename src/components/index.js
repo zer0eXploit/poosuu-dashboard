@@ -1,7 +1,9 @@
 export { Nav } from "./Nav";
+export { Plyr } from "./Plyr";
 export { SongCard } from "./SongCard";
 export { SongForm } from "./SongForm";
 export { Container } from "./Container";
+export { LyricsTool } from "./LyricsTool";
 export { ListLoader } from "./ListLoader";
 export { SongLoader } from "./SongLoader";
 export { CardLoader } from "./CardLoader";

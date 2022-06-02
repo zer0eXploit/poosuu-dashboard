@@ -1,17 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { useParams } from "react-router-dom";
-import { Button, Pane, Heading, Spinner, majorScale } from "evergreen-ui";
+import {
+  Button,
+  Pane,
+  Heading,
+  Spinner,
+  TextInputField,
+  majorScale,
+} from "evergreen-ui";
 
 import { useAsync } from "../hooks";
 
-import { Container, LyricsForm } from "../components";
+import { Container, Plyr, LyricsTool } from "../components";
 
 import { getLyrics, updateLyrics } from "../utils/lyrics";
 
 export default function LyricsIndividual() {
   const { lyricsId } = useParams();
   let { error, data, status, run } = useAsync();
+
+  const plyrRef = useRef();
+  const [embedId, setEmbedId] = useState(null);
 
   useEffect(() => run(getLyrics(lyricsId)), [run, lyricsId]);
 
@@ -51,14 +61,54 @@ export default function LyricsIndividual() {
     return (
       <Container disableMt>
         <Heading as="h4" size={700} marginBottom={majorScale(3)}>
-          Lyrics Data
+          You can edit the lyrics data below
         </Heading>
-        <LyricsForm
-          makeRequest={updateLyrics}
-          data={data.data}
-          update
-          refetch={refetch}
-        />
+        <Pane display="flex" gap="2rem">
+          <Pane width="50%">
+            <Pane borderRadius="0.5rem" overflow="hidden">
+              <Plyr
+                ref={plyrRef}
+                source={{
+                  type: "video",
+                  sources: [
+                    {
+                      src: embedId || data?.data?.youtubeEmbed,
+                      provider: "youtube",
+                    },
+                  ],
+                }}
+              />
+            </Pane>
+            <TextInputField
+              marginTop={majorScale(2)}
+              label="YouTube video URL or embed ID."
+              description="Please enter the ID of the YouTube video or the full URL."
+              placeholder="inpok4MKVLM"
+              autoComplete="off"
+              hint="The default video is just a placeholder."
+              onChange={(e) => {
+                // BAD Mutation
+                data.data.youtubeEmbed = e.target.value;
+                setEmbedId(e.target.value);
+              }}
+            />
+          </Pane>
+          <Pane
+            elevation={1}
+            width="50%"
+            borderRadius="0.5rem"
+            display="flex"
+            padding="1rem"
+          >
+            <LyricsTool
+              videoRef={plyrRef}
+              data={data?.data}
+              update
+              makeRequest={updateLyrics}
+              refetch={refetch}
+            />
+          </Pane>
+        </Pane>
       </Container>
     );
   }
