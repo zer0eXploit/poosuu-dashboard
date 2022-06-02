@@ -2,7 +2,7 @@ import React from "react";
 
 import { usePlyr } from "plyr-react";
 
-import "plyr-react/plyr.css";
+// import "plyr-react/plyr.css";
 
 export const Plyr = React.forwardRef((props, ref) => {
   const { source, options = null, ...rest } = props;
