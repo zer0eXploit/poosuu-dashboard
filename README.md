@@ -26,19 +26,19 @@ In the environment variables file, `REACT_APP_API_BASE_URL` and `REACT_APP_POOSU
 
 ## Some Screenshots
 
-<p align="center">
+<p align="left">
    <img src="https://i.ibb.co/9tw8bhs/1.png" alt="Log Screen"/>
 </p>
-<p align="center">
+<p align="left">
    <img src="https://i.ibb.co/5jDJdDp/2.png" alt="Dashboard"/>
 </p>
-<p align="center">
+<p align="left">
    <img src="https://i.ibb.co/VNB7pK4/3.png" alt="Account"/>
 </p>
-<p align="center">
+<p align="left">
    <img src="https://i.ibb.co/dQnZzL7/4.png" alt="Search Songs"/>
 </p>
-<p align="center">
+<p align="left">
    <img src="https://i.ibb.co/8Pc8mwH/5.png" alt="Search Artists"/>
 </p>
 
