@@ -47,6 +47,6 @@ In the environment variables file, `REACT_APP_API_BASE_URL` and `REACT_APP_POOSU
 
 You can support me by scanning the following QR.
 
-<p align="center">
+<p align="left">
    <img src="https://bit.ly/3ICIOfv" alt="Buy me a coffee!"/>
 </p>
