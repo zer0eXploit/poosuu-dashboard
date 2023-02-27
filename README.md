@@ -41,9 +41,5 @@ In the environment variables file, `REACT_APP_API_BASE_URL` and `REACT_APP_POOSU
 <p align="center">
    <img src="https://i.ibb.co/8Pc8mwH/5.png" alt="Search Artists"/>
 </p>
-<p align="center">
-   <img src="https://i.ibb.co/9qqpwLX/artist-edit.jpg" alt="Timing Tool"/>
-</p>
-<p align="center">
-   <img src="https://i.ibb.co/6Yr2Bty/lyrics-timing-tool.jpg" alt="Timing Tool"/>
-</p>
+<a href="https://www.buymeacoffee.com/zer0eXploit" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+
