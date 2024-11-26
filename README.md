@@ -41,12 +41,3 @@ In the environment variables file, `REACT_APP_API_BASE_URL` and `REACT_APP_POOSU
 <p align="left">
    <img src="https://i.ibb.co/8Pc8mwH/5.png" alt="Search Artists"/>
 </p>
-
-
-## Support
-
-You can support me by scanning the following QR.
-
-<p align="left">
-   <img src="https://i.ibb.co/Jcf2t3g/bmc-qr.png" alt="Buy me a coffee!"/>
-</p>
